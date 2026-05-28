@@ -10,12 +10,12 @@
     /* ─── Tokens ─────────────────────────────────────────── */
     :root {
       --theme-color:       #0F62FE;
-      --sidebar-bg:        #161616;
-      --sidebar-text:      #c6c6c6;
-      --sidebar-heading:   #6f6f6f;
-      --sidebar-active:    #ffffff;
-      --sidebar-active-bg: #0F62FE;
-      --sidebar-hover:     #e0e0e0;
+      --sidebar-bg:        #ffffff;
+      --sidebar-text:      #525252;
+      --sidebar-heading:   #161616;
+      --sidebar-active:    #0F62FE;
+      --sidebar-active-bg: #edf5ff;
+      --sidebar-hover:     #161616;
       --sidebar-width:     260px;
       --topbar-height:     48px;
       --font-sans:         'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
@@ -51,7 +51,7 @@
     /* Wordmark at top of sidebar */
     .app-name {
       background: var(--sidebar-bg);
-      border-bottom: 1px solid #393939;
+      border-bottom: 1px solid #e0e0e0;
       padding: 0 24px;
       height: var(--topbar-height);
       display: flex;
@@ -59,7 +59,7 @@
     }
 
     .app-name-link {
-      color: #ffffff !important;
+      color: #161616 !important;
       font-size: 14px;
       font-weight: 600;
       letter-spacing: 0;
@@ -81,8 +81,8 @@
       content: 'v0.1';
       font-size: 10px;
       font-weight: 500;
-      background: #393939;
-      color: #a8a8a8;
+      background: #e0e0e0;
+      color: #525252;
       padding: 2px 6px;
       border-radius: 2px;
       margin-left: 6px;
@@ -90,12 +90,14 @@
     }
 
     /* Sidebar section headings (p > strong pattern from Docsify) */
-    .sidebar-nav > ul > li > p {
+    .sidebar-nav > ul > li > p,
+    .sidebar-nav > p {
       margin: 24px 0 4px 0;
       padding: 0 24px;
     }
 
-    .sidebar-nav > ul > li > p strong {
+    .sidebar-nav > ul > li > p strong,
+    .sidebar-nav > p strong {
       font-size: 10px;
       font-weight: 600;
       letter-spacing: 0.1em;
@@ -119,7 +121,7 @@
 
     .sidebar-nav ul li a:hover {
       color: var(--sidebar-hover);
-      background: #262626;
+      background: #f4f4f4;
       text-decoration: none;
     }
 
@@ -354,15 +356,15 @@
     /* ─── Search ─────────────────────────────────────────── */
     .search {
       background: var(--sidebar-bg);
-      border-bottom: 1px solid #393939;
+      border-bottom: 1px solid #e0e0e0;
       padding: 12px 16px;
       margin-bottom: 0;
     }
 
     .search input {
-      background: #262626;
-      border: 1px solid #393939;
-      color: #f4f4f4;
+      background: #f4f4f4;
+      border: 1px solid #e0e0e0;
+      color: #161616;
       border-radius: 2px;
       font-size: 13px;
       padding: 8px 12px;
@@ -388,7 +390,7 @@
     /* ─── Scrollbar ──────────────────────────────────────── */
     .sidebar::-webkit-scrollbar { width: 4px; }
     .sidebar::-webkit-scrollbar-track { background: var(--sidebar-bg); }
-    .sidebar::-webkit-scrollbar-thumb { background: #393939; border-radius: 2px; }
+    .sidebar::-webkit-scrollbar-thumb { background: #e0e0e0; border-radius: 2px; }
 
     /* ─── Responsive ─────────────────────────────────────── */
     @media (max-width: 768px) {
@@ -405,7 +407,7 @@
     window.$docsify = {
       name: 'UX AI Toolkit',
       repo: 'https://github.com/ds-danielela/ux-ai-toolkit',
-      loadSidebar: true,
+      loadSidebar: 'sidebar.md',
       subMaxLevel: 2,
       auto2top: true,
 

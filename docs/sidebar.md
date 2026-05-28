@@ -1,4 +1,4 @@
-<!-- _sidebar.md -->
+<!-- sidebar.md -->
 
 **Overview**
 
