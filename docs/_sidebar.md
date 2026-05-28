@@ -2,7 +2,7 @@
 
 **Overview**
 
-- [Home](home.md)
+- [Home](/)
 - [Getting started](getting-started.md)
 
 **Workflow**
