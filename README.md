@@ -1,18 +1,47 @@
 # UX AI Toolkit
 
-A local AI-powered UX review system built on Claude Code. Each agent lives in
-its own folder and runs independently. Shared design system and research
-knowledge lives in `shared/` and is available to all agents.
+AI-powered UX tools for a medical/dental software design team. Built on Claude.
+
+**Agents** run in the terminal and review staging screens autonomously.
+**Skills** run in Claude chat and help designers think through work before and during design.
+
+They serve different moments in the workflow — see below.
 
 ---
 
-## What's inside
+## Repo structure
 
 ```
 ux-ai-toolkit/
-├── shared/                  ← Design system rules and research (fill these in)
-└── ux-review-agent/         ← Reviews screens against the design system
+├── shared/                          ← Design system knowledge — read by all tools
+│   ├── design-system/
+│   │   ├── components/              ← JSON per component (variants, props, rules)
+│   │   ├── foundations/             ← Color, spacing, typography, border, radius
+│   │   ├── guidelines/              ← Do/don't rules, token rules, component status
+│   │   ├── tokens/                  ← Full design token JSON (light + dark)
+│   │   └── docs/                    ← ZeroHeight export (components, patterns, templates)
+│   └── research/
+│       └── patterns.md              ← Cross-user behavioral patterns (add when available)
+│
+├── agents/
+│   └── ux-review/                   ← Reviews staging screens, writes structured reports
+│
+├── skills/
+│   └── ux-design-workflow-assistant/ ← Design brief synthesis + pre-sync review (chat)
+│
+├── .gitignore
+└── README.md
 ```
+
+---
+
+## When to use what
+
+| Moment | Tool | How |
+|---|---|---|
+| About to start a NEED — need to synthesise inputs into a brief | **Skill** | Paste NEED + research into Claude chat |
+| Designed something — want a quick check before weekly sync | **Skill** | Paste brief + screens into Claude chat |
+| Screens are on staging — need a full structured audit | **Agent** | Drop screenshot or URL in `inbox/`, run from terminal |
 
 ---
 
@@ -31,78 +60,75 @@ git clone <your-repo-url>
 cd ux-ai-toolkit
 ```
 
-### 3. Fill in the knowledge files
-
-Before the agent can give useful output, fill these in with your real content:
-
-| File | What to add |
-|---|---|
-| `shared/design-system/components.md` | Component names, rules, when NOT to use |
-| `shared/design-system/tokens.md` | Spacing, color, and typography scale |
-| `shared/design-system/anti-patterns.md` | Common misuses you see in your product |
-| `ux-review-agent/agent-config/rules/user-flows.md` | Key flows and expected behavior per step |
-
-`shared/research/patterns.md` can stay empty until you have research data.
-
 ---
 
-## Running the UX Review Agent
+## Using the UX Review Agent
 
 ```bash
-cd ux-review-agent
+cd agents/ux-review
 claude
 ```
-
-### Trigger a review
 
 Drop a screenshot into `inbox/`, then tell the agent:
 
 ```
 "There's a new screen in inbox/. Run a ux-review."
 "Review inbox/settings-page.png"
-```
-
-Or point it at a URL:
-
-```
 "Review the checkout flow at staging.myapp.com/checkout"
 ```
 
-### Output
-
 Reports are written to `outputs/` as `.json` (structured) and `.md` (readable).
-Processed inputs are moved to `archive/`. Nothing is deleted.
-
----
-
-## Contributing new knowledge
-
-When you want to add or update design system rules, personas, or flows:
-
-1. Create a branch: `git checkout -b add/[what-youre-adding]`
-2. Edit the relevant file in `shared/` or `agent-config/rules/`
-3. Open a pull request
-4. The team lead reviews and merges
+Processed inputs move to `archive/`. Nothing is deleted.
 
 `inbox/`, `outputs/`, and `archive/` are in `.gitignore` — they never get pushed.
 
 ---
 
+## Using the Design Workflow Skill
+
+Install the skill in Cowork or Claude chat by pointing it at:
+```
+skills/ux-design-workflow-assistant/SKILL.md
+```
+
+Then in chat, paste your NEED in this format:
+```
+NEED: [one paragraph]
+Constraints: [bulleted]
+Research findings: [bulleted, with confidence level]
+Known gaps: [what you don't know]
+```
+
+The skill produces a design brief. Use the same skill to review screens before a sync.
+
+---
+
+## Contributing knowledge
+
+When you want to add or update design system rules, personas, or flows:
+
+1. Branch: `git checkout -b add/[what-youre-adding]`
+2. Edit the relevant file in `shared/`
+3. Open a pull request
+4. Team lead reviews and merges
+
+---
+
 ## Adding a new agent
 
-1. Create a new folder at the repo root: `mkdir my-new-agent`
-2. Add a `CLAUDE.md` and an `agent-config/` folder inside it
-3. Reference `../shared/` for any design system or research knowledge
+1. Create `agents/your-agent-name/`
+2. Add `CLAUDE.md` and `agent-config/` inside it
+3. Reference `../../shared/` for design system and research knowledge
 4. Add its `inbox/`, `outputs/`, `archive/` to `.gitignore`
+5. Update this README
 
 Each agent is fully independent. Adding one never touches another.
 
 ---
 
-## Agents
+## Tools
 
-| Agent | Status | Purpose |
-|---|---|---|
-| `ux-review-agent` | Active | Single screen audit against the design system |
-| `content-agent` | Planned | Copy, labels, and microcopy review |
-| `qa-agent` | Planned | Functional checks: broken links, form failures, responsive |
+| Tool | Type | Status | Purpose |
+|---|---|---|---|
+| `agents/ux-review` | Agent | Active | Single screen audit against the design system |
+| `skills/ux-design-workflow-assistant` | Skill | Active | Brief synthesis + pre-sync review |

@@ -1,17 +1,20 @@
 # Work product — local only, never pushed to GitHub
-ux-review-agent/inbox/*
-ux-review-agent/outputs/*
-ux-review-agent/archive/*
+# Each agent's inbox, outputs, and archive stay on the designer's machine
+
+agents/ux-review/inbox/*
+agents/ux-review/outputs/*
+agents/ux-review/archive/*
 
 # Keep the folders themselves (empty placeholder)
-!ux-review-agent/inbox/.gitkeep
-!ux-review-agent/outputs/.gitkeep
-!ux-review-agent/archive/.gitkeep
+!agents/ux-review/inbox/.gitkeep
+!agents/ux-review/outputs/.gitkeep
+!agents/ux-review/archive/.gitkeep
 
-# Future agents — same pattern
-# content-agent/inbox/*
-# content-agent/outputs/*
-# content-agent/archive/*
+# Adding a new agent? Copy the three lines above and update the path.
+# Example:
+# agents/content-review/inbox/*
+# agents/content-review/outputs/*
+# agents/content-review/archive/*
 
 # OS
 .DS_Store
