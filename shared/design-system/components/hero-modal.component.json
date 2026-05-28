@@ -1,0 +1,64 @@
+{
+  "id": "component-hero-modal",
+  "name": "Hero modal",
+  "canonical_name": "Hero modal",
+  "aliases": ["feature introduction modal", "onboarding modal", "announcement modal"],
+  "category": "Overlays",
+  "version": "0.33.0",
+  "sources": {
+    "figma": true,
+    "zeroheight_url": "https://zeroheight.com/0b922d40b/p/41c5d9",
+    "storybook": true,
+    "storybook_url": "https://storybook-coreui-d2-euw3.d.dscore.com/#/Components/Hero%20modal",
+    "doc_ready": true,
+    "storybook_ready": true
+  },
+  "variants": [
+    { "name": "single_step", "description": "One acknowledging action. e.g. Got it, Continue, I understand." },
+    { "name": "multi_step", "description": "Multiple steps with Previous / Next navigation. Final step has a confirming primary action." }
+  ],
+  "props": {
+    "headline": { "type": "string", "required": true, "note": "Short and specific, focus on core feature value" },
+    "body": { "type": "string | ReactNode", "required": true, "note": "Text paragraph or custom structured layout (consuming team responsible)" },
+    "hero_content": { "type": "ReactNode", "required": true, "note": "Image or animated content. May differ between light/dark mode. Consuming team implements." },
+    "steps": { "type": "number", "default": 1, "note": "Total number of steps for multi-step flow" },
+    "current_step": { "type": "number", "default": 1 },
+    "primary_action_label": { "type": "string", "required": true },
+    "secondary_action_label": { "type": "string | null", "default": null },
+    "show_close_button": { "type": "boolean", "default": true },
+    "on_close": { "type": "function", "required": true }
+  },
+  "tokens": {
+    "spacing": {
+      "margin_from_screen_edge": { "token": "Spacing.Layout.M", "value": "24px", "note": "Minimum distance to top and bottom of screen" }
+    },
+    "radius": { "token": "Border.Radius.Large", "value": "16px" },
+    "colors": {
+      "overlay": { "note": "Semitransparent overlay covers the full underlying screen" },
+      "surface": { "token": "Surface.Standard", "light": "#FFFFFF", "dark": "#242424" }
+    },
+    "elevation": "elevation3"
+  },
+  "usage_rules": [
+    { "rule": "Use sparingly — interrupts workflow", "severity": "warning", "detail": "Hero modals interrupt the user's workflow. Only use to introduce new features or explain functionality. Do not use for routine confirmations." },
+    { "rule": "No fullscreen variation", "severity": "error", "detail": "Hero modal does not have a fullscreen variant. Do not attempt to make it fullscreen." },
+    { "rule": "Overlay blocks underlying content", "severity": "info", "detail": "When open, the semitransparent overlay prevents interaction with underlying content." },
+    { "rule": "Hero area and actions stay fixed on scroll", "severity": "error", "detail": "If content overflows, only the headline and body scroll. Hero image and action buttons remain fixed." },
+    { "rule": "Centered horizontally and vertically", "severity": "error", "detail": "The modal is always centered on screen. Do not position it to one side." },
+    { "rule": "Multi-step: use Next / Previous labels", "severity": "warning", "detail": "In multi-step flows, use Next and Previous for navigation. Final step must end with a clear confirming action." },
+    { "rule": "Acknowledgment actions are valid", "severity": "info", "detail": "Got it, Continue, I understand, Enable, Try out are all acceptable action labels." }
+  ],
+  "accessibility": {
+    "role": "dialog",
+    "aria_modal": true,
+    "focus_trap": true,
+    "close_on_escape": true
+  },
+  "agent_instructions": {
+    "confidence_blockers": [
+      "If ticket does not provide hero_content specification, flag — consuming team must implement.",
+      "If ticket requests fullscreen hero modal, flag as not supported."
+    ]
+  },
+  "embedding_text": "Hero modal component. Introduces new features onboarding announcements. Has hero image area and body content area. Single step with acknowledge action or multi-step with next previous navigation. Centered on screen with overlay. Sparingly use only for feature introduction. No fullscreen. Hero and actions fixed on scroll."
+}

@@ -1,0 +1,237 @@
+{
+  "meta": {
+    "version": "0.33.0",
+    "description": "Rules for correct token pairing, forbidden combinations, and hierarchy. Generated from: border.md, color-guidelines.md, color-tokens-semantic.md, spacing.md, typography.md, radius.md, elevation.md, design-tokens.json",
+    "agent_rule": "Before generating any code, validate all token pairings against these rules. Any violation must be flagged as an error and the output must not be auto-merged."
+  },
+
+  "color_rules": [
+    {
+      "id": "color-001",
+      "severity": "error",
+      "rule": "Always use semantic tokens — never raw palette values",
+      "correct": "Action.Primary.Standard",
+      "incorrect": "dsBlue/500 or #0F62FE",
+      "detail": "All components must use semantic decision tokens. Primitive palette values (dsBlue, dsRed, etc.) are never used directly in components or code."
+    },
+    {
+      "id": "color-002",
+      "severity": "error",
+      "rule": "Apply each token only for its defined role",
+      "examples": [
+        { "correct": "Text.Critical for validation error messages only", "incorrect": "Text.Critical for decorative red text" },
+        { "correct": "Surface.Critical for critical status tag backgrounds", "incorrect": "Surface.Critical for a highlighted card that is not an error" }
+      ]
+    },
+    {
+      "id": "color-003",
+      "severity": "error",
+      "rule": "Semantic variant tokens must be used as a complete set",
+      "detail": "When using a semantic variant (critical, warning, success, information), always use all three tokens from the same group together: Surface, Icon, and Border. Never mix tokens from different semantic groups.",
+      "groups": {
+        "critical":    { "surface": "Surface.Critical",    "icon": "Icon.Critical",    "border": "Border.Critical",    "text": "Text.Critical" },
+        "warning":     { "surface": "Surface.Warning",     "icon": "Icon.Warning",     "border": "Border.Warning" },
+        "success":     { "surface": "Surface.Success",     "icon": "Icon.Success",     "border": "Border.Success" },
+        "information": { "surface": "Surface.Information", "icon": "Icon.Information", "border": "Border.Information" }
+      }
+    },
+    {
+      "id": "color-004",
+      "severity": "error",
+      "rule": "Text on colored backgrounds must use the On.* token",
+      "pairs": [
+        { "background_token": "Action.Primary.Standard",    "text_token": "Text.On.Primary",      "icon_token": "Icon.On.Primary" },
+        { "background_token": "Surface.Interactive.*",      "text_token": "Text.On.Interactive",  "icon_token": "Icon.On.Interactive" },
+        { "background_token": "Surface.Contrast",           "text_token": "Text.On.Contrast",     "icon_token": "Icon.On.Contrast" },
+        { "background_token": "Surface.Critical (filled)",  "text_token": "Text.On.Critical",     "icon_token": "Icon.On.Critical" }
+      ]
+    },
+    {
+      "id": "color-005",
+      "severity": "error",
+      "rule": "Text.Critical is only for validation error messages",
+      "detail": "Text.Critical must only be used for form field validation error text. It must not be used for decorative text, emphasis, or any non-error purpose."
+    },
+    {
+      "id": "color-006",
+      "severity": "error",
+      "rule": "Text color variables are scoped — text tokens apply to text layers only",
+      "detail": "In Figma and code, text color tokens (Text.*) can only be applied to text. Border tokens (Border.*) only to borders. Icon tokens (Icon.*) only to icon layers. Do not apply cross-scope."
+    },
+    {
+      "id": "color-007",
+      "severity": "warning",
+      "rule": "Action.* tokens are exclusively for buttons",
+      "detail": "Action.Primary, Action.Secondary, Action.Destructive, Action.Tertiary tokens are intended only for button components and their states. Do not use Action tokens for other interactive surfaces."
+    },
+    {
+      "id": "color-008",
+      "severity": "warning",
+      "rule": "Surface.Interactive.* tokens are for selected/active states only",
+      "detail": "Use Surface.Interactive tokens for checkbox checked state, switch on state, tab selected indicator, etc. Not for general hover surfaces."
+    }
+  ],
+
+  "border_rules": [
+    {
+      "id": "border-001",
+      "severity": "error",
+      "rule": "Border color and border width tokens must match the same interaction state",
+      "pairs": [
+        { "state": "standard",  "color_token": "Border.Standard",  "width_token": "Border.Width.Standard",     "width_value": "1px" },
+        { "state": "focus",     "color_token": "Border.Focused",   "width_token": "Border.Width.Focus",         "width_value": "2px" },
+        { "state": "error",     "color_token": "Border.Critical",  "width_token": "Border.Width.Critical",      "width_value": "2px" },
+        { "state": "dropzone",  "color_token": "Border.Standard",  "width_token": "Border.Width.Dropzone",      "width_value": "2px" },
+        { "state": "interactive", "color_token": "Border.Interactive", "width_token": "Border.Width.Interactive", "width_value": "2px" }
+      ],
+      "incorrect_example": "Border.Focused (color) + Border.Width.Critical (width) — mismatched states"
+    },
+    {
+      "id": "border-002",
+      "severity": "error",
+      "rule": "Focus state always uses Border.Focused color + Border.Width.Focus (2px)",
+      "detail": "Every interactive component must show a 2px focus ring using Border.Focused on keyboard navigation. This is mandatory for accessibility."
+    },
+    {
+      "id": "border-003",
+      "severity": "error",
+      "rule": "Annotation border widths are only for Canvas annotation use cases",
+      "detail": "Border.Width.Annotation Light (2px), Medium (4px), Bold (8px) are exclusively for canvas annotation contexts. Do not use for UI component borders."
+    }
+  ],
+
+  "radius_rules": [
+    {
+      "id": "radius-001",
+      "severity": "error",
+      "rule": "Nested elements must use a smaller radius than their parent container",
+      "detail": "When an element is nested inside a container, the child radius must be smaller than the parent radius to visually reflect containment hierarchy.",
+      "hierarchy": [
+        { "token": "Border.Radius.Large",    "value": "16px", "use_for": "Containers, modal dialogs, larger components" },
+        { "token": "Border.Radius.Standard", "value": "12px", "use_for": "Buttons, form fields, standard components" },
+        { "token": "Border.Radius.Medium",   "value": "8px",  "use_for": "Inner parts e.g. segmented control selected segment" },
+        { "token": "Border.Radius.Small",    "value": "4px",  "use_for": "Small components: checkboxes, etc." },
+        { "token": "Border.Radius.Pill",     "value": "999px","use_for": "Tags, avatars, pill shapes only" },
+        { "token": "Border.Radius.Sharp",    "value": "0px",  "use_for": "Elements that must have no rounded corners" }
+      ]
+    },
+    {
+      "id": "radius-002",
+      "severity": "error",
+      "rule": "Do not use the same radius for parent and child elements",
+      "detail": "Identical radii on nested components flatten the visual hierarchy and make containment unclear."
+    }
+  ],
+
+  "spacing_rules": [
+    {
+      "id": "spacing-001",
+      "severity": "error",
+      "rule": "Use component spacing tokens inside components, layout spacing tokens between components",
+      "detail": "Spacing.Component.* tokens are for internal component spacing (padding, gaps between icon and label, etc.). Spacing.Layout.* tokens are for separating components from each other on a page.",
+      "component_tokens": {
+        "Spacing.Component.XL":  "48px — Horizontal padding for top bar",
+        "Spacing.Component.L":   "24px",
+        "Spacing.Component.M":   "16px — Horizontal padding for buttons, text fields; gap between headline and content in cards",
+        "Spacing.Component.S":   "12px — Horizontal padding in main menu items, vertical tabs",
+        "Spacing.Component.XS":  "8px  — Gap between icon and label in buttons; vertical padding in buttons and text fields",
+        "Spacing.Component.XXS": "4px  — Gap between dropdown and menu; tooltip outer spacing; very small component internals"
+      },
+      "layout_tokens": {
+        "Spacing.Layout.XL": "80px / 48px — Large section distinction",
+        "Spacing.Layout.L":  "48px / 24px — Between page sections",
+        "Spacing.Layout.M":  "24px / 16px — Between form columns, components, inner spacing of spacious cards",
+        "Spacing.Layout.S":  "16px / 12px — Between closely related components; compact card internal spacing",
+        "Spacing.Layout.XS": "8px  — Above page headline; between very closely related components"
+      }
+    },
+    {
+      "id": "spacing-002",
+      "severity": "error",
+      "rule": "Do not introduce custom spacing values",
+      "detail": "Never use arbitrary pixel values for spacing. Always use the nearest defined token. Custom spacing breaks responsive behaviour."
+    },
+    {
+      "id": "spacing-003",
+      "severity": "warning",
+      "rule": "Layout spacing tokens are responsive — values differ in Small mode",
+      "detail": "Spacing.Layout.* tokens have two values: default (M–XL layouts) and Small (layout S only). Do not apply Small mode values to layouts M and above.",
+      "responsive_pairs": [
+        { "token": "Spacing.Layout.XS", "default": "8px",  "small": "6px" },
+        { "token": "Spacing.Layout.S",  "default": "16px", "small": "12px" },
+        { "token": "Spacing.Layout.M",  "default": "24px", "small": "16px" },
+        { "token": "Spacing.Layout.L",  "default": "48px", "small": "24px" },
+        { "token": "Spacing.Layout.XL", "default": "80px", "small": "48px" }
+      ]
+    }
+  ],
+
+  "typography_rules": [
+    {
+      "id": "type-001",
+      "severity": "error",
+      "rule": "Always pair a typography token with a valid text color token",
+      "detail": "Every text element must use both a typography token (for size, weight, line-height) and a text color token (Text.Standard, Text.Subdued, Text.Disabled, Text.Critical, etc.). Never use raw color values on text.",
+      "valid_color_tokens": ["Text.Standard", "Text.Subdued", "Text.Disabled", "Text.Critical", "Text.Interactive", "Text.On.Primary", "Text.On.Interactive", "Text.On.Contrast", "Text.On.Dimmer"]
+    },
+    {
+      "id": "type-002",
+      "severity": "error",
+      "rule": "Button labels always use Text.textAction",
+      "detail": "Text.textAction (14px SemiBold, fixed) is the only valid typography token for button labels. It does not change in responsive Small mode.",
+      "token": "Text.textAction",
+      "size": "14px",
+      "weight": "SemiBold",
+      "responsive": false
+    },
+    {
+      "id": "type-003",
+      "severity": "warning",
+      "rule": "Heading tokens are responsive — font size changes in Small mode",
+      "detail": "Text.heading* and Text.textLg tokens have smaller sizes in responsive layout S. Apply Small mode only for layout S.",
+      "responsive_tokens": ["Text.heading5xl", "Text.heading4xl", "Text.heading3xl", "Text.heading2xl", "Text.headingXl", "Text.headingBase", "Text.textLg"]
+    },
+    {
+      "id": "type-004",
+      "severity": "error",
+      "rule": "Typeface is Be Vietnam Pro — never override",
+      "detail": "DS CORE uses Be Vietnam Pro. Noto Sans is the fallback for languages with special characters. No other typefaces are permitted."
+    },
+    {
+      "id": "type-005",
+      "severity": "error",
+      "rule": "All UI text must use sentence case",
+      "detail": "Every text element in the UI — labels, headlines, placeholders, error messages, button labels, tab labels, option list items — must use sentence case. No title case. No ALL CAPS."
+    }
+  ],
+
+  "elevation_rules": [
+    {
+      "id": "elevation-001",
+      "severity": "warning",
+      "rule": "Use the correct elevation level for component type",
+      "hierarchy": [
+        { "level": "elevation1", "use_for": "Buttons, cards" },
+        { "level": "elevation2", "use_for": "Primary buttons" },
+        { "level": "elevation3", "use_for": "Popovers, side sheets, option lists, toasts" },
+        { "level": "elevation4", "use_for": "Reserved" },
+        { "level": "elevation5", "use_for": "Reserved" }
+      ]
+    }
+  ],
+
+  "theme_rules": [
+    {
+      "id": "theme-001",
+      "severity": "error",
+      "rule": "All tokens must resolve correctly for both light and dark mode",
+      "detail": "Every component must be tested against both themes. Never hardcode hex values — always use semantic tokens which automatically resolve per theme."
+    },
+    {
+      "id": "theme-002",
+      "severity": "info",
+      "rule": "Small mode is only for responsive layout S",
+      "detail": "The Small mode of number tokens (typography sizes, layout spacing) applies exclusively to responsive layout S. Do not apply Small mode to layouts M–XL."
+    }
+  ]
+}

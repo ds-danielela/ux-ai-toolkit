@@ -1,0 +1,57 @@
+{
+  "id": "component-list",
+  "name": "List",
+  "canonical_name": "List",
+  "aliases": ["item list", "data list", "content list", "feed"],
+  "category": "Layout",
+  "version": "0.33.0",
+  "sources": {
+    "figma": true,
+    "zeroheight_url": "https://zeroheight.com/0b922d40b/p/37109e",
+    "storybook": true,
+    "storybook_url": "https://storybook-coreui-d2-euw3.d.dscore.com/#/Components/List",
+    "doc_ready": true,
+    "storybook_ready": true
+  },
+  "states": ["default", "skeleton"],
+  "props": {
+    "items": { "type": "ListItem[]", "required": true },
+    "is_skeleton": { "type": "boolean", "default": false }
+  },
+  "item_schema": {
+    "headline": { "type": "string", "required": true, "note": "Short and specific" },
+    "body": { "type": "string | null", "default": null },
+    "leading": { "type": "icon | image | avatar | progress_circle | null", "default": null, "note": "All items in a list must use the same leading element type" },
+    "color_dot": { "type": "string | null", "default": null, "note": "Supplements headline. Shown as neutral skeleton in loading state." },
+    "actions": { "type": "Action[] | null", "default": null }
+  },
+  "tokens": {
+    "typography": {
+      "headline": { "token": "Text.textBaseStrong", "size": "16px", "weight": "SemiBold" },
+      "body": { "token": "Text.textSm", "size": "14px", "weight": "Regular" }
+    },
+    "colors": {
+      "divider": { "token": "Border.Standard", "light": "#D4D4D4", "dark": "#3A3A3A" },
+      "skeleton": { "token": "Surface.Skeleton", "light": "#E8E8E8", "dark": "#2E2E2E" }
+    },
+    "spacing": {
+      "item_internal": { "token": "Spacing.Component.M", "value": "16px" }
+    }
+  },
+  "usage_rules": [
+    { "rule": "All items must have consistent structure", "severity": "error", "detail": "All list items within one list must be structured the same way. Do not mix items with icons and items without icons, or items with images and items without." },
+    { "rule": "Use table for complex data", "severity": "warning", "detail": "Use the List component for simple, similar data. For complex structured data with multiple columns, use Table instead." },
+    { "rule": "Sort items logically", "severity": "info", "detail": "Order items in a logical way meaningful to the user. New items (e.g. comments) are added at the bottom." }
+  ],
+  "accessibility": {
+    "role": "list",
+    "item_role": "listitem"
+  },
+  "agent_instructions": {
+    "confidence_blockers": [
+      "If ticket mixes leading element types (some items with icons, some without), flag as usage_rule violation.",
+      "If ticket represents complex multi-column data in a list, suggest Table instead."
+    ]
+  },
+  "embedding_text": "List component. Simple similar data items. Each item has headline body and optional leading icon image avatar progress circle. All items must have consistent structure. Divider between items. Skeleton loading state. Use Table for complex data not List."
+}

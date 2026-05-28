@@ -1,0 +1,70 @@
+{
+  "id": "component-media-tile",
+  "name": "Media tile",
+  "canonical_name": "Media tile",
+  "aliases": ["image tile", "patient image", "media card", "image thumbnail"],
+  "category": "Media",
+  "version": "0.33.0",
+  "sources": {
+    "figma": true,
+    "zeroheight_url": "https://zeroheight.com/0b922d40b/p/35ddbc",
+    "storybook": true,
+    "storybook_url": "https://storybook-coreui-d2-euw3.d.dscore.com/#/Components/Media%20Tile",
+    "doc_ready": true,
+    "storybook_ready": true
+  },
+  "variants": [
+    { "name": "filled", "description": "Contains an image thumbnail. Default state." },
+    { "name": "empty_dropzone", "description": "Accepts file uploads via drag-and-drop. Has dashed border." },
+    { "name": "placeholder", "description": "No image available. Shows an icon instead." },
+    { "name": "error", "description": "Error state. Red border, status tag with error tooltip." },
+    { "name": "skeleton", "description": "Loading state. Large box skeleton for image, pill skeletons for text." }
+  ],
+  "props": {
+    "variant": { "type": "enum", "values": ["filled", "empty_dropzone", "placeholder", "error", "skeleton"], "default": "filled" },
+    "image_src": { "type": "string | null", "default": null },
+    "label": { "type": "string", "required": true },
+    "sublabel": { "type": "string | null", "default": null },
+    "tag": { "type": "string | null", "default": null, "note": "Image type tag, shown on top of image" },
+    "selectable": { "type": "boolean", "default": false, "note": "Shows checkbox for selection" },
+    "actions": { "type": "Action[] | null", "default": null, "note": "More than one action reveals option list" },
+    "prominent_action": { "type": "Action | null", "default": null, "note": "For Quality info of DI scans only" },
+    "error_message": { "type": "string | null", "default": null, "note": "Shown in tooltip on error status tag" }
+  },
+  "tokens": {
+    "spacing": {
+      "internal": { "token": "Spacing.Layout.S", "value": "16px", "note": "Compact spacing within tile" }
+    },
+    "radius": { "token": "Border.Radius.Standard", "value": "12px" },
+    "border_width": {
+      "standard": { "token": "Border.Width.Standard", "value": "1px" },
+      "dropzone": { "token": "Border.Width.Dropzone", "value": "2px", "note": "Dashed border on empty dropzone" },
+      "error": { "token": "Border.Width.Critical", "value": "2px" }
+    },
+    "colors": {
+      "border_standard": { "token": "Border.Standard", "light": "#D4D4D4", "dark": "#3A3A3A" },
+      "border_error": { "token": "Border.Critical", "light": "#D92B2B", "dark": "#FF6B6B" },
+      "surface": { "token": "Surface.Standard", "light": "#FFFFFF", "dark": "#242424" },
+      "skeleton": { "token": "Surface.Skeleton", "light": "#E8E8E8", "dark": "#2E2E2E" }
+    },
+    "image": { "note": "Thumbnail is always square. Cropped from center horizontally or vertically depending on orientation." }
+  },
+  "usage_rules": [
+    { "rule": "Only for graphical objects", "severity": "error", "detail": "Use media tiles only for listing graphical objects such as patient images. Do not use for listing actions or non-visual content." },
+    { "rule": "Consistent detail display within a gallery", "severity": "error", "detail": "All media tiles in a gallery must either all show details (sublabel, actions) or all hide them. Do not mix." },
+    { "rule": "Multiple actions open option list", "severity": "info", "detail": "When more than one action is provided, the action button reveals an option list. Do not render multiple visible action buttons." },
+    { "rule": "Image is always square-cropped", "severity": "info", "detail": "The image thumbnail is always square. The original image is cropped from center." },
+    { "rule": "Error state requires tooltip", "severity": "warning", "detail": "In error state, the status tag must display a tooltip with the error message." }
+  ],
+  "accessibility": {
+    "role": "figure",
+    "selectable_note": "When selectable, checkbox must have an accessible label describing the item"
+  },
+  "agent_instructions": {
+    "confidence_blockers": [
+      "If ticket mixes tiles with and without details in the same gallery, flag as usage_rule violation.",
+      "If ticket requests media tile for non-image content (e.g. action list), flag and suggest List or Option list instead."
+    ]
+  },
+  "embedding_text": "Media tile component. Lists graphical objects patient images. Variants: filled with image, empty dropzone upload, placeholder icon, error red border, skeleton loading. Always square cropped thumbnail. Multiple actions reveal option list. Consistent detail display across gallery. Not for non-visual content."
+}

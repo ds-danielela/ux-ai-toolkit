@@ -1,0 +1,71 @@
+{
+  "id": "component-checkbox",
+  "name": "Checkbox",
+  "canonical_name": "Checkbox",
+  "aliases": ["multi select", "tick box", "check", "selection control"],
+  "category": "Forms",
+  "version": "0.33.0",
+  "sources": {
+    "figma": true,
+    "zeroheight_url": "https://zeroheight.com/0b922d40b/p/546c9e",
+    "storybook": true,
+    "storybook_url": "https://storybook-coreui-d2-euw3.d.dscore.com/#/Components/Checkbox",
+    "doc_ready": true,
+    "storybook_ready": true
+  },
+  "states": ["unchecked", "checked", "indeterminate", "disabled", "error", "focused"],
+  "props": {
+    "label": { "type": "string | null", "default": null, "note": "Required unless context is unambiguous (e.g. table row selection)" },
+    "sublabel": { "type": "string | null", "default": null },
+    "checked": { "type": "boolean", "default": false },
+    "indeterminate": { "type": "boolean", "default": false, "note": "Tri-state for hierarchical selection. Parent is indeterminate when only some children selected." },
+    "disabled": { "type": "boolean", "default": false },
+    "error": { "type": "boolean", "default": false },
+    "error_message": { "type": "string | null", "default": null }
+  },
+  "tokens": {
+    "sizing": { "value": "20px", "note": "Fixed size checkbox control" },
+    "border_width": {
+      "interactive": { "token": "Border.Width.Interactive", "value": "2px" },
+      "focus": { "token": "Border.Width.Focus", "value": "2px" }
+    },
+    "radius": { "token": "Border.Radius.Small", "value": "4px" },
+    "colors": {
+      "checked_background": { "token": "Surface.Interactive.Standard", "light": "#1F6FEB", "dark": "#1F6FEB" },
+      "checked_hovered": { "token": "Surface.Interactive.Hovered", "light": "#1A64D6", "dark": "#3D84F0" },
+      "checked_pressed": { "token": "Surface.Interactive.Pressed", "light": "#1558C0", "dark": "#5599F5" },
+      "checked_disabled": { "token": "Surface.Interactive.Disabled", "light": "#A8C8F8", "dark": "#1A3A6B" },
+      "border_unchecked": { "token": "Border.Standard", "light": "#D4D4D4", "dark": "#3A3A3A" },
+      "border_error": { "token": "Border.Critical", "light": "#D92B2B", "dark": "#FF6B6B" },
+      "focus_ring": { "token": "Border.Focused", "light": "#1F6FEB", "dark": "#5599F5" },
+      "checkmark": { "token": "Icon.On.Interactive", "light": "#FFFFFF", "dark": "#FFFFFF" },
+      "error_text": { "token": "Text.Critical", "light": "#D92B2B", "dark": "#FF6B6B" }
+    }
+  },
+  "decision_guide": {
+    "checkbox_vs_radio": "Use checkbox for non-exclusive (multi-select) choices. Use radio button when only one option can be selected.",
+    "checkbox_vs_switch": "Use checkbox for selection (table rows, lists of options). Use switch for activation (on/off a feature). Single binary yes/no with obvious meaning: use checkbox.",
+    "indeterminate_vs_switch": "Only checkbox supports indeterminate/tri-state. If you need to represent partial/hierarchical selection, always use checkbox, never switch."
+  },
+  "usage_rules": [
+    { "rule": "Checkbox for non-exclusive choices only", "severity": "error", "detail": "If only one option can be selected from a list, use radio button instead of checkbox." },
+    { "rule": "Standalone checkbox requires clear context", "severity": "warning", "detail": "A checkbox without a label is only acceptable when its connection to context is unambiguous — e.g. multi-row selection in a table." },
+    { "rule": "No commas or semicolons at end of labels", "severity": "error", "detail": "Checkbox labels must not end with commas, semicolons, or other punctuation." },
+    { "rule": "Labels in sentence case", "severity": "error", "detail": "All checkbox labels must use sentence case." },
+    { "rule": "Long labels wrap, never truncate", "severity": "info", "detail": "If a label is too long, wrap to a second line. Never truncate." },
+    { "rule": "Alphabetical sorting not recommended", "severity": "info", "detail": "Sort by frequency of use or logical order, not alphabetically, as this is language-dependent." }
+  ],
+  "accessibility": {
+    "role": "checkbox",
+    "keyboard": ["Space to toggle"],
+    "aria_checked": "true | false | mixed (for indeterminate)",
+    "label_association": "label must be associated via htmlFor or aria-labelledby"
+  },
+  "agent_instructions": {
+    "confidence_blockers": [
+      "If ticket uses checkbox for an exclusive single-choice list, flag and suggest radio button.",
+      "If ticket uses checkbox for an on/off activation, flag and suggest switch."
+    ]
+  },
+  "embedding_text": "Checkbox component. Multi-select non-exclusive selection control. States: unchecked checked indeterminate tri-state disabled error focused. Use for selection not activation. Use radio button for exclusive single choice. Use switch for on off activation. Labels sentence case no punctuation at end. Hierarchical tri-state supported."
+}

@@ -1,0 +1,58 @@
+{
+  "id": "component-page-header",
+  "name": "Page header",
+  "canonical_name": "Page header",
+  "aliases": ["page title", "screen header", "page heading"],
+  "category": "Layout",
+  "version": "0.33.0",
+  "sources": {
+    "figma": true,
+    "zeroheight_url": "https://zeroheight.com/0b922d40b/p/788503",
+    "storybook": true,
+    "storybook_url": "https://storybook-coreui-d2-euw3.d.dscore.com/#/Templates/Scrollable%20Page%20With%20Main%20Menu",
+    "doc_ready": true,
+    "storybook_ready": true
+  },
+  "variants": [
+    { "name": "top_level", "description": "First level page. No back button, no status tags." },
+    { "name": "second_level", "description": "Detail/sub page. Has back button and optionally status tags." }
+  ],
+  "props": {
+    "variant": { "type": "enum", "values": ["top_level", "second_level"], "required": true },
+    "headline": { "type": "string", "required": true, "note": "Sentence case. Short and specific." },
+    "subline": { "type": "string | null", "default": null },
+    "status_tags": { "type": "Tag[] | null", "default": null, "note": "Only on second_level pages" },
+    "actions": { "type": "Action[]", "default": [], "note": "Max 3 buttons. For layout S: max 1 button optionally opening option list." },
+    "back_button_label": { "type": "string | null", "default": null, "note": "Second level only. Label must match the headline of the parent top-level page." },
+    "sticky": { "type": "boolean", "default": false, "note": "When sticky, page header collapses on scroll: back button disappears, headline shrinks, spacing reduces, subline hides." }
+  },
+  "tokens": {
+    "typography": {
+      "headline": { "token": "Text.heading3xl", "size": "32px", "weight": "SemiBold", "note": "Responsive: 24px in Small mode" },
+      "subline": { "token": "Text.textBase", "size": "16px", "weight": "Regular" }
+    },
+    "spacing": {
+      "above_headline": { "token": "Spacing.Layout.XS", "value": "8px" },
+      "between_sections": { "token": "Spacing.Layout.M", "value": "24px" }
+    },
+    "colors": {
+      "headline": { "token": "Text.Standard", "light": "#1A1A1A", "dark": "#F0F0F0" },
+      "subline": { "token": "Text.Subdued", "light": "#6E6E6E", "dark": "#9A9A9A" }
+    }
+  },
+  "usage_rules": [
+    { "rule": "Already included in layout templates", "severity": "info", "detail": "Layout templates already include a page header. Do not add a second one." },
+    { "rule": "Max 3 actions (1 on layout S)", "severity": "error", "detail": "No more than 3 action buttons in the page header. For responsive layout S, only 1 button shown — additional actions go in an option list." },
+    { "rule": "Status tags on second level only", "severity": "error", "detail": "Status tags are only allowed on second_level page headers." },
+    { "rule": "Back button label matches parent headline", "severity": "error", "detail": "The back button label must match the headline of the corresponding top-level page." },
+    { "rule": "Sentence case throughout", "severity": "error", "detail": "Headline and description must use sentence case." }
+  ],
+  "agent_instructions": {
+    "confidence_blockers": [
+      "If ticket places page header inside a layout template that already contains one, flag as duplication.",
+      "If ticket adds more than 3 action buttons, flag — excess actions go in option list.",
+      "If ticket adds status tags to a top_level page header, flag as usage_rule violation."
+    ]
+  },
+  "embedding_text": "Page header component. Page title screen header at top of content area. Variants: top level first level page, second level detail page with back button. Headline subline status tags actions. Max 3 actions 1 on small layout. Back button label matches parent page headline. Sticky collapses on scroll. Sentence case."
+}

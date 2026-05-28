@@ -1,0 +1,312 @@
+{
+  "id": "component-button",
+  "name": "Button",
+  "canonical_name": "Button",
+  "aliases": ["CTA", "action button", "submit button"],
+  "category": "Actions",
+  "version": "0.33.0",
+
+  "sources": {
+    "figma": true,
+    "zeroheight_url": "https://zeroheight.com/0b922d40b/p/156acf",
+    "storybook": true,
+    "doc_ready": true,
+    "storybook_ready": true
+  },
+
+  "variants": [
+    {
+      "name": "primary",
+      "description": "Main call-to-action. Use for the single most important action on a page or in a dialog.",
+      "when_to_use": "One primary button per view. Confirms, submits, or proceeds.",
+      "avoid": "Do not use more than one primary button in the same context."
+    },
+    {
+      "name": "secondary",
+      "description": "Supporting action alongside a primary button.",
+      "when_to_use": "Cancel, back, or secondary confirm actions.",
+      "avoid": "Do not use as the sole action — pair with primary or as standalone tertiary."
+    },
+    {
+      "name": "destructive",
+      "description": "Irreversible or dangerous action such as delete or remove.",
+      "when_to_use": "Delete, remove, revoke actions. Always pair with a confirmation dialog.",
+      "avoid": "Do not use for navigation or reversible actions."
+    },
+    {
+      "name": "tertiary",
+      "description": "Low-emphasis action, no border or background at rest.",
+      "when_to_use": "Inline actions, contextual links within a layout.",
+      "avoid": "Do not use as the primary action in a form or dialog."
+    }
+  ],
+
+  "states": ["standard", "hovered", "pressed", "disabled", "focused"],
+
+  "sizes": ["small", "medium", "large"],
+
+  "props": {
+    "variant": {
+      "type": "enum",
+      "values": ["primary", "secondary", "destructive", "tertiary"],
+      "default": "secondary",
+      "required": true
+    },
+    "size": {
+      "type": "enum",
+      "values": ["small", "medium", "large"],
+      "default": "medium"
+    },
+    "label": {
+      "type": "string",
+      "required": true
+    },
+    "icon_leading": {
+      "type": "icon | null",
+      "default": null
+    },
+    "icon_trailing": {
+      "type": "icon | null",
+      "default": null
+    },
+    "icon_only": {
+      "type": "boolean",
+      "default": false,
+      "note": "When true, label is used as aria-label only"
+    },
+    "disabled": {
+      "type": "boolean",
+      "default": false
+    },
+    "loading": {
+      "type": "boolean",
+      "default": false,
+      "note": "Replaces label with spinner, keeps button width stable"
+    },
+    "full_width": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+
+  "tokens": {
+    "typography": {
+      "label": {
+        "token": "Text.textAction",
+        "size": "14px",
+        "line_height": "24px",
+        "weight": "SemiBold",
+        "letter_spacing": "-2.5%",
+        "note": "Fixed size — does not adapt in responsive Small mode"
+      }
+    },
+    "spacing": {
+      "horizontal_padding": {
+        "token": "Spacing.Component.M",
+        "value": "16px"
+      },
+      "vertical_padding": {
+        "token": "Spacing.Component.XS",
+        "value": "8px"
+      },
+      "icon_gap": {
+        "token": "Spacing.Component.XS",
+        "value": "8px",
+        "note": "Gap between icon and label text"
+      }
+    },
+    "radius": {
+      "token": "Border.Radius.Standard",
+      "value": "12px"
+    },
+    "border_width": {
+      "standard": {
+        "token": "Border.Width.Standard",
+        "value": "1px"
+      },
+      "focus": {
+        "token": "Border.Width.Focus",
+        "value": "2px"
+      }
+    },
+    "elevation": {
+      "primary": "elevation2",
+      "secondary_and_others": "elevation1"
+    },
+    "colors": {
+      "primary": {
+        "background": {
+          "standard":  { "token": "Action.Primary.Standard",  "light": "#1F6FEB", "dark": "#1F6FEB" },
+          "hovered":   { "token": "Action.Primary.Hovered",   "light": "#1A64D6", "dark": "#3D84F0" },
+          "pressed":   { "token": "Action.Primary.Pressed",   "light": "#1558C0", "dark": "#5599F5" },
+          "disabled":  { "token": "Action.Primary.Disabled",  "light": "#A8C8F8", "dark": "#1A3A6B" }
+        },
+        "label": {
+          "token": "Text.On.Primary",
+          "light": "#FFFFFF",
+          "dark": "#FFFFFF"
+        },
+        "icon": {
+          "token": "Icon.On.Primary",
+          "light": "#FFFFFF",
+          "dark": "#FFFFFF"
+        },
+        "border": "none",
+        "focus_ring": {
+          "token": "Border.Focused",
+          "light": "#1F6FEB",
+          "dark": "#5599F5",
+          "width_token": "Border.Width.Focus",
+          "value": "2px"
+        }
+      },
+      "secondary": {
+        "background": {
+          "standard":  { "token": "Action.Secondary.Standard",  "light": "#FFFFFF",  "dark": "#2A2A2A" },
+          "hovered":   { "token": "Action.Secondary.Hovered",   "light": "#F5F5F5",  "dark": "#333333" },
+          "pressed":   { "token": "Action.Secondary.Pressed",   "light": "#EBEBEB",  "dark": "#3A3A3A" },
+          "disabled":  { "token": "Action.Secondary.Disabled",  "light": "#FAFAFA",  "dark": "#1E1E1E" }
+        },
+        "label": {
+          "standard":  { "token": "Text.Standard",  "light": "#1A1A1A", "dark": "#F0F0F0" },
+          "disabled":  { "token": "Text.Disabled",  "light": "#B0B0B0", "dark": "#4A4A4A" }
+        },
+        "icon": {
+          "standard":  { "token": "Icon.Standard",  "light": "#1A1A1A", "dark": "#F0F0F0" },
+          "disabled":  { "token": "Icon.Disabled",  "light": "#B0B0B0", "dark": "#4A4A4A" }
+        },
+        "border": {
+          "token": "Border.Standard",
+          "light": "#D4D4D4",
+          "dark": "#3A3A3A",
+          "width_token": "Border.Width.Standard",
+          "value": "1px"
+        },
+        "focus_ring": {
+          "token": "Border.Focused",
+          "light": "#1F6FEB",
+          "dark": "#5599F5",
+          "width_token": "Border.Width.Focus",
+          "value": "2px"
+        }
+      },
+      "destructive": {
+        "background": {
+          "standard":  { "token": "Action.Destructive.Standard",  "light": "#FFFFFF",  "dark": "#2A2A2A" },
+          "hovered":   { "token": "Action.Destructive.Hovered",   "light": "#FFF0F0",  "dark": "#3D0F0F" },
+          "pressed":   { "token": "Action.Destructive.Pressed",   "light": "#FFE0E0",  "dark": "#4D1515" },
+          "disabled":  { "token": "Action.Destructive.Disabled",  "light": "#FAFAFA",  "dark": "#1E1E1E" }
+        },
+        "label": {
+          "standard":  { "token": "Text.Critical",  "light": "#D92B2B", "dark": "#FF6B6B" },
+          "disabled":  { "token": "Text.Disabled",  "light": "#B0B0B0", "dark": "#4A4A4A" }
+        },
+        "icon": {
+          "standard":  { "token": "Icon.Critical",  "light": "#D92B2B", "dark": "#FF6B6B" },
+          "disabled":  { "token": "Icon.Disabled",  "light": "#B0B0B0", "dark": "#4A4A4A" }
+        },
+        "border": {
+          "token": "Border.Critical",
+          "light": "#D92B2B",
+          "dark": "#FF6B6B",
+          "width_token": "Border.Width.Standard",
+          "value": "1px"
+        },
+        "focus_ring": {
+          "token": "Border.Focused",
+          "light": "#1F6FEB",
+          "dark": "#5599F5",
+          "width_token": "Border.Width.Focus",
+          "value": "2px"
+        }
+      },
+      "tertiary": {
+        "background": {
+          "standard": "transparent",
+          "hovered":  { "token": "Action.Tertiary.Hovered",  "light": "#F0F0F0", "dark": "#2E2E2E" },
+          "pressed":  { "token": "Action.Tertiary.Pressed",  "light": "#E5E5E5", "dark": "#383838" },
+          "disabled": "transparent"
+        },
+        "label": {
+          "standard":  { "token": "Text.Interactive",         "light": "#1F6FEB", "dark": "#5599F5" },
+          "disabled":  { "token": "Text.Disabled",            "light": "#B0B0B0", "dark": "#4A4A4A" }
+        },
+        "icon": {
+          "standard":  { "token": "Icon.Interactive",         "light": "#1F6FEB", "dark": "#5599F5" },
+          "disabled":  { "token": "Icon.Disabled",            "light": "#B0B0B0", "dark": "#4A4A4A" }
+        },
+        "border": "none",
+        "focus_ring": {
+          "token": "Border.Focused",
+          "light": "#1F6FEB",
+          "dark": "#5599F5",
+          "width_token": "Border.Width.Focus",
+          "value": "2px"
+        }
+      }
+    }
+  },
+
+  "usage_rules": [
+    {
+      "rule": "One primary button per context",
+      "severity": "error",
+      "detail": "Never render more than one variant=primary button in the same form, dialog or section."
+    },
+    {
+      "rule": "Destructive requires confirmation",
+      "severity": "error",
+      "detail": "A destructive button must always be paired with an Alert Dialog or confirmation step before executing the action."
+    },
+    {
+      "rule": "Always use Text.textAction for button labels",
+      "severity": "error",
+      "detail": "Do not use any other typography token for button labels. textAction is fixed at 14px SemiBold regardless of responsive mode."
+    },
+    {
+      "rule": "Use semantic tokens only — never raw palette values",
+      "severity": "error",
+      "detail": "Never use primitive tokens (e.g. dsBlue/500) directly. Always use Action.*, Text.*, Border.* semantic tokens."
+    },
+    {
+      "rule": "Pair border color with correct border width token",
+      "severity": "error",
+      "detail": "Border.Focused must always be paired with Border.Width.Focus (2px). Border.Standard must use Border.Width.Standard (1px). Do not mix states."
+    },
+    {
+      "rule": "Disabled buttons must not trigger actions",
+      "severity": "error",
+      "detail": "When disabled=true, the button must be non-interactive. Do not rely on opacity alone."
+    },
+    {
+      "rule": "Icon-only buttons must have aria-label",
+      "severity": "error",
+      "detail": "When icon_only=true, the label prop is used as aria-label and must be descriptive."
+    },
+    {
+      "rule": "Radius nesting",
+      "severity": "warning",
+      "detail": "If a button is placed inside a container, the button radius (Border.Radius.Standard 12px) must be smaller than the container radius (Border.Radius.Large 16px)."
+    }
+  ],
+
+  "accessibility": {
+    "role": "button",
+    "keyboard": ["Enter", "Space"],
+    "focus_visible": true,
+    "aria_disabled": "Use aria-disabled=true rather than HTML disabled when button should remain focusable",
+    "min_touch_target": "44px"
+  },
+
+  "agent_instructions": {
+    "confidence_blockers": [
+      "If ticket does not specify variant, ask for clarification — do not assume primary.",
+      "If ticket requests multiple primary buttons, flag as usage_rule violation before generating.",
+      "If ticket requests a destructive action without a confirmation dialog, flag and suggest Alert Dialog pairing."
+    ],
+    "token_resolution": "Always resolve colors from design-tokens.json using the correct theme (light/dark). Never hardcode hex values in generated code.",
+    "responsive_note": "Text.textAction does not change in Small mode. Spacing.Component tokens do not change. Only Spacing.Layout tokens vary — these are not used inside the Button component itself."
+  },
+
+  "embedding_text": "Button component. Variants: primary CTA action, secondary supporting action, destructive delete remove action, tertiary low-emphasis inline action. States: standard hovered pressed disabled focused. Uses Action color tokens, Text.textAction typography, Spacing.Component padding, Border.Radius.Standard 12px, focus ring Border.Focused 2px. One primary per view. Destructive requires confirmation dialog."
+}

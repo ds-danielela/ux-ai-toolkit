@@ -1,0 +1,92 @@
+{
+  "id": "component-text-field",
+  "name": "Text field",
+  "canonical_name": "Text field",
+  "aliases": ["input", "input field", "text input", "form field", "numeric field"],
+  "category": "Forms",
+  "version": "0.33.0",
+  "sources": {
+    "figma": true,
+    "zeroheight_url": "https://zeroheight.com/0b922d40b/p/523b03",
+    "storybook": true,
+    "storybook_url": "https://storybook-coreui-d2-euw3.d.dscore.com/#/Components/Text%20Field%20(Input%20Field)",
+    "doc_ready": true,
+    "storybook_ready": true
+  },
+  "variants": [
+    { "name": "text", "description": "Single-line plain text input. Default." },
+    { "name": "numeric", "description": "Numeric input. Text right-aligned, unit displayed and cannot be overwritten." }
+  ],
+  "states": ["default", "focused", "filled", "disabled", "read_only", "error"],
+  "props": {
+    "label": { "type": "string", "required": true, "note": "Always sentence case" },
+    "value": { "type": "string", "default": "" },
+    "placeholder": { "type": "string | null", "default": null, "note": "Only for non-critical hints. Not accessible — do not rely on it." },
+    "help_text": { "type": "string | null", "default": null, "note": "Do not repeat the label. Replaced by error message on validation failure." },
+    "error_message": { "type": "string | null", "default": null, "note": "Guides user to resolve the error. Replaces help text." },
+    "icon": { "type": "icon | null", "default": null },
+    "info_button": { "type": "boolean", "default": false },
+    "disabled": { "type": "boolean", "default": false },
+    "read_only": { "type": "boolean", "default": false },
+    "optional": { "type": "boolean", "default": false, "note": "If true, appends (optional) to label. Do not mark required fields." },
+    "unit": { "type": "string | null", "default": null, "note": "Numeric variant only. Cannot be overwritten by user." },
+    "width": { "type": "string", "default": "100%", "note": "Should be wide enough to show longest expected value." }
+  },
+  "tokens": {
+    "typography": {
+      "label": { "token": "Text.textSm", "size": "14px", "weight": "Regular" },
+      "input": { "token": "Text.textBase", "size": "16px", "weight": "Regular" },
+      "help_text": { "token": "Text.textSm", "size": "14px", "weight": "Regular" },
+      "error_text": { "token": "Text.textSm", "size": "14px", "weight": "Regular" },
+      "placeholder": { "note": "Uses Text.Subdued color" }
+    },
+    "spacing": {
+      "horizontal_padding": { "token": "Spacing.Component.M", "value": "16px" },
+      "vertical_padding": { "token": "Spacing.Component.XS", "value": "8px" }
+    },
+    "radius": { "token": "Border.Radius.Standard", "value": "12px" },
+    "border_width": {
+      "standard": { "token": "Border.Width.Standard", "value": "1px" },
+      "focus": { "token": "Border.Width.Focus", "value": "2px" },
+      "error": { "token": "Border.Width.Critical", "value": "2px" }
+    },
+    "colors": {
+      "surface": { "token": "Surface.Standard", "light": "#FFFFFF", "dark": "#242424" },
+      "surface_disabled": { "token": "Surface.Disabled", "light": "#FAFAFA", "dark": "#1E1E1E" },
+      "border_standard": { "token": "Border.Standard", "light": "#D4D4D4", "dark": "#3A3A3A" },
+      "border_focused": { "token": "Border.Focused", "light": "#1F6FEB", "dark": "#5599F5" },
+      "border_error": { "token": "Border.Critical", "light": "#D92B2B", "dark": "#FF6B6B" },
+      "border_disabled": { "token": "Border.Disabled", "light": "#EBEBEB", "dark": "#2A2A2A" },
+      "text_label": { "token": "Text.Standard", "light": "#1A1A1A", "dark": "#F0F0F0" },
+      "text_placeholder": { "token": "Text.Subdued", "light": "#6E6E6E", "dark": "#9A9A9A" },
+      "text_disabled": { "token": "Text.Disabled", "light": "#B0B0B0", "dark": "#4A4A4A" },
+      "text_error": { "token": "Text.Critical", "light": "#D92B2B", "dark": "#FF6B6B" },
+      "icon_read_only": { "token": "Icon.Read.Only", "light": "#8A8A8A", "dark": "#707070" }
+    }
+  },
+  "usage_rules": [
+    { "rule": "Do not mark required fields", "severity": "error", "detail": "Never use asterisk or 'required' label. Only ask for information truly needed. Mark optional fields with (optional) appended to label." },
+    { "rule": "Error message replaces help text", "severity": "error", "detail": "On validation error, the error message replaces the help text. Never show both simultaneously." },
+    { "rule": "Help text must not repeat the label", "severity": "error", "detail": "Help text provides additional context. Do not repeat the label or placeholder content." },
+    { "rule": "Placeholder is not accessible", "severity": "warning", "detail": "Placeholder text disappears on focus. Only use for non-critical example hints. Never use as a substitute for a label." },
+    { "rule": "Labels in sentence case", "severity": "error", "detail": "Label, placeholder, help text, and error text must all use sentence case." },
+    { "rule": "Width should reflect expected input length", "severity": "warning", "detail": "As a general rule, width should be large enough to show the longest valid input. This hints at the expected value." },
+    { "rule": "Numeric: text right-aligned with unit", "severity": "error", "detail": "In numeric variant, input text is right-aligned and a unit is displayed. The unit cannot be edited by the user." },
+    { "rule": "Error messages must be actionable", "severity": "warning", "detail": "Error messages should guide the user to solve the problem, not just state that there is one." }
+  ],
+  "accessibility": {
+    "role": "textbox",
+    "label_association": "label must be programmatically associated via htmlFor / aria-labelledby",
+    "error_association": "error message must be linked via aria-describedby",
+    "keyboard": ["Tab to focus", "Enter to submit if in form"]
+  },
+  "agent_instructions": {
+    "confidence_blockers": [
+      "If ticket marks required fields with asterisk, flag as usage_rule violation.",
+      "If ticket shows help text and error message simultaneously, flag.",
+      "If placeholder is used as the only label, flag — a visible label is required."
+    ],
+    "token_resolution": "Border color and width must always match state: Border.Focused + Border.Width.Focus on focus, Border.Critical + Border.Width.Critical on error."
+  },
+  "embedding_text": "Text field input field form field. Single line text entry or numeric with unit. States: default focused filled disabled read only error. Has label placeholder help text error message icon info button. Required fields not marked only optional marked. Error replaces help text. Sentence case. Accessible label required."
+}

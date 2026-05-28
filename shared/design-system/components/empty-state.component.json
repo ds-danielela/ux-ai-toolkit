@@ -1,0 +1,56 @@
+{
+  "id": "component-empty-state",
+  "name": "Empty state",
+  "canonical_name": "Empty state",
+  "aliases": ["no data", "zero state", "blank state", "no results", "page not found"],
+  "category": "Feedback",
+  "version": "0.33.0",
+  "sources": {
+    "figma": true,
+    "zeroheight_url": "https://zeroheight.com/0b922d40b/p/02a0dc",
+    "storybook": true,
+    "storybook_url": "https://storybook-coreui-d2-euw3.d.dscore.com/#/Components/Empty%20state",
+    "doc_ready": true,
+    "storybook_ready": true
+  },
+  "props": {
+    "headline": { "type": "string", "required": true, "note": "Short and specific. Sentence case." },
+    "body": { "type": "string", "required": true, "note": "Provides context and tells user what to do next. No technical jargon." },
+    "illustration": { "type": "IllustrationComponent | null", "default": null, "note": "Use illustration only. Never icons or images." },
+    "action": { "type": "Action | null", "default": null, "note": "Directional CTA. e.g. Create order, Upload media. Avoid leaving without action." }
+  },
+  "tokens": {
+    "typography": {
+      "headline": { "token": "Text.heading2xl", "size": "24px", "weight": "SemiBold" },
+      "body": { "token": "Text.textBase", "size": "16px", "weight": "Regular" }
+    },
+    "spacing": {
+      "max_text_width": "960px",
+      "note": "Text width must not exceed 960px (approx 60 chars) for readability"
+    },
+    "colors": {
+      "headline": { "token": "Text.Standard", "light": "#1A1A1A", "dark": "#F0F0F0" },
+      "body": { "token": "Text.Subdued", "light": "#6E6E6E", "dark": "#9A9A9A" }
+    }
+  },
+  "usage_rules": [
+    { "rule": "Illustration only — no icons or images", "severity": "error", "detail": "Only use illustrations in the empty state. Never use icons or photographs as the visual element." },
+    { "rule": "Provide an action where possible", "severity": "warning", "detail": "Avoid empty states without actionable CTAs. Guide the user on what to do next." },
+    { "rule": "No technical jargon in body", "severity": "error", "detail": "Body text must be coherent, solution-oriented, and free of technical terms." },
+    { "rule": "Max text width 960px", "severity": "warning", "detail": "Constrain text width to 960px for readability, even if the container is wider." },
+    { "rule": "Action labels must be directional", "severity": "warning", "detail": "Action labels should clearly describe what happens. e.g. Create order, Upload media. Not OK or Continue." },
+    { "rule": "Sentence case throughout", "severity": "error", "detail": "Headline and body must use sentence case." }
+  ],
+  "accessibility": {
+    "role": "region",
+    "aria_label": "Describe what the empty area represents"
+  },
+  "agent_instructions": {
+    "confidence_blockers": [
+      "If ticket uses an icon as the visual in an empty state, flag — must use illustration.",
+      "If ticket leaves empty state without any action, flag with warning.",
+      "If body text contains technical error messages, flag and suggest plain language."
+    ]
+  },
+  "embedding_text": "Empty state component. No data zero state blank state no results page not found inactivity. Has headline body illustration optional action. Illustration only never icons or images. Directional action CTA required. No technical jargon. Max 960px text width. Sentence case."
+}

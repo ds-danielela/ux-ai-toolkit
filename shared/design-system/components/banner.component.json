@@ -1,0 +1,81 @@
+{
+  "id": "component-banner",
+  "name": "Banner",
+  "canonical_name": "Banner",
+  "aliases": ["notification banner", "system message", "alert banner", "info bar"],
+  "category": "Feedback",
+  "version": "0.33.0",
+  "sources": {
+    "figma": true,
+    "zeroheight_url": "https://zeroheight.com/0b922d40b/p/27f50c",
+    "storybook": true,
+    "storybook_url": "https://storybook-coreui-d2-euw3.d.dscore.com/#/Components/Banner",
+    "doc_ready": true,
+    "storybook_ready": true
+  },
+  "variants": [
+    { "name": "critical", "description": "An issue has occurred that prevents further processing.", "when_to_use": "Blocking errors only." },
+    { "name": "warning", "description": "A problem or inconsistency has arisen. Users can carry on working.", "when_to_use": "Non-blocking issues that may cause errors later." },
+    { "name": "success", "description": "An action has been performed without errors or warnings.", "when_to_use": "Confirming successful system-level operations." },
+    { "name": "information", "description": "Additional, non-critical information.", "when_to_use": "Informing users about system or product-level context." }
+  ],
+  "states": ["default", "with_headline", "with_action", "dismissible"],
+  "props": {
+    "variant": { "type": "enum", "values": ["critical", "warning", "success", "information"], "required": true },
+    "body": { "type": "string", "required": true },
+    "headline": { "type": "string | null", "default": null },
+    "action_label": { "type": "string | null", "default": null },
+    "action_on_click": { "type": "function | null", "default": null },
+    "dismissible": { "type": "boolean", "default": false },
+    "animated": { "type": "boolean", "default": false, "note": "Animate on first entry only. Never re-animate on page navigation." }
+  },
+  "tokens": {
+    "colors": {
+      "critical": {
+        "background": { "token": "Surface.Critical", "light": "#FFF0F0", "dark": "#3D0F0F" },
+        "icon": { "token": "Icon.Critical", "light": "#D92B2B", "dark": "#FF6B6B" },
+        "border": { "token": "Border.Critical", "light": "#D92B2B", "dark": "#FF6B6B" }
+      },
+      "warning": {
+        "background": { "token": "Surface.Warning", "light": "#FFF8EC", "dark": "#3D2400" },
+        "icon": { "token": "Icon.Warning", "light": "#E07B00", "dark": "#FFB347" },
+        "border": { "token": "Border.Warning", "light": "#E07B00", "dark": "#FFB347" }
+      },
+      "success": {
+        "background": { "token": "Surface.Success", "light": "#F0FFF4", "dark": "#0D2E1A" },
+        "icon": { "token": "Icon.Success", "light": "#1E8A3E", "dark": "#4DD97A" },
+        "border": { "token": "Border.Success", "light": "#1E8A3E", "dark": "#4DD97A" }
+      },
+      "information": {
+        "background": { "token": "Surface.Information", "light": "#F0F7FF", "dark": "#0D2040" },
+        "icon": { "token": "Icon.Information", "light": "#1F6FEB", "dark": "#5599F5" },
+        "border": { "token": "Border.Information", "light": "#1F6FEB", "dark": "#5599F5" }
+      }
+    },
+    "spacing": {
+      "placement": { "token": "Spacing.Layout.M", "note": "Banner placed above page content with layout spacing" }
+    },
+    "radius": { "token": "Border.Radius.Standard", "value": "12px" },
+    "border_width": { "token": "Border.Width.Standard", "value": "1px" }
+  },
+  "usage_rules": [
+    { "rule": "Only one banner at a time", "severity": "error", "detail": "Never stack multiple banners. Only one banner should be visible at a time." },
+    { "rule": "Icon and color must match variant", "severity": "error", "detail": "Always pair the correct semantic icon with the correct semantic color for the variant. Do not mix e.g. warning icon with critical color." },
+    { "rule": "No custom icons or colors", "severity": "error", "detail": "Only use the four provided variants. Do not introduce custom icons or background colors." },
+    { "rule": "Banner placement is above page content", "severity": "error", "detail": "Banners must be placed above page content. In wizard mode, may be placed above the wizard top bar." },
+    { "rule": "Animation only on first entry", "severity": "warning", "detail": "If animated, only animate when the banner first appears on a screen. Do not re-animate on page navigation within the same screen." },
+    { "rule": "For task-specific messages use Inline notification", "severity": "warning", "detail": "Banners are for system or product-level messages, not task-specific feedback. Use Inline notification for form or task errors." }
+  ],
+  "accessibility": {
+    "role": "alert",
+    "aria_live": "assertive for critical, polite for others"
+  },
+  "agent_instructions": {
+    "confidence_blockers": [
+      "If ticket requests multiple banners stacked, flag as usage_rule violation.",
+      "If ticket requests a task-specific error banner, suggest Inline notification instead."
+    ],
+    "token_resolution": "Always derive background, icon, and border colors from the same semantic variant group. Never mix tokens from different variant groups."
+  },
+  "embedding_text": "Banner component. System or product level non-task messages. Variants: critical blocking error, warning non-blocking issue, success confirmation, information context. Always one banner at a time never stack. Placed above page content. Semantic icon and color must match variant. No custom colors or icons."
+}

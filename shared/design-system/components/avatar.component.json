@@ -1,0 +1,62 @@
+{
+  "id": "component-avatar",
+  "name": "Avatar",
+  "canonical_name": "Avatar",
+  "aliases": ["user photo", "profile picture", "initials", "user thumbnail"],
+  "category": "Identity",
+  "version": "0.33.0",
+  "sources": {
+    "figma": true,
+    "zeroheight_url": "https://zeroheight.com/0b922d40b/p/688aaa",
+    "storybook": true,
+    "storybook_url": "https://storybook-coreui-d2-euw3.d.dscore.com/#/Components/Avatar",
+    "doc_ready": true,
+    "storybook_ready": true
+  },
+  "variants": [
+    { "name": "image", "description": "Shows a person's photo. Preferred when image is available." },
+    { "name": "initials", "description": "Shows two-letter initials (first + last name) when no image is available." },
+    { "name": "skeleton", "description": "Circular skeleton placeholder while content is loading." }
+  ],
+  "sizes": [
+    { "name": "large", "value": "40px" },
+    { "name": "small", "value": "32px" }
+  ],
+  "states": ["default", "skeleton"],
+  "props": {
+    "size": { "type": "enum", "values": ["small", "large"], "default": "large" },
+    "image_src": { "type": "string | null", "default": null, "note": "URL of person's photo" },
+    "initials": { "type": "string", "required": true, "note": "Always two letters: first + last name initial, e.g. LH for Linda Hall" },
+    "is_skeleton": { "type": "boolean", "default": false },
+    "on_click": { "type": "function | null", "default": null, "note": "Only use when triggering user menu" }
+  },
+  "tokens": {
+    "typography": {
+      "initials": { "token": "Text.textXsStrong", "size": "12px", "weight": "SemiBold", "note": "Small avatar initials" }
+    },
+    "radius": { "token": "Border.Radius.Pill", "value": "999px", "note": "Always fully circular" },
+    "colors": {
+      "initials_text": { "token": "Text.On.Primary", "light": "#FFFFFF", "dark": "#FFFFFF" },
+      "skeleton": { "token": "Surface.Skeleton", "light": "#E8E8E8", "dark": "#2E2E2E" }
+    }
+  },
+  "usage_rules": [
+    { "rule": "Initials must be exactly two letters", "severity": "error", "detail": "Always use first name initial + last name initial. e.g. LH for Linda Hall. Never use one letter or more than two." },
+    { "rule": "Non-interactive by default", "severity": "error", "detail": "Avatar is not interactive except when used to trigger the user menu. Do not add click handlers for other purposes." },
+    { "rule": "Avoid for patients", "severity": "warning", "detail": "Avoid using avatar when it is likely that no image will be available, e.g. for patient records. Use an alternative representation instead." },
+    { "rule": "Image is always cropped to circle", "severity": "info", "detail": "Images are cropped to a circle. The image should be a square or close to square for best results." }
+  ],
+  "accessibility": {
+    "role": "img",
+    "aria_label": "Required when used as image — describe the person shown",
+    "min_touch_target": "44px when interactive"
+  },
+  "agent_instructions": {
+    "confidence_blockers": [
+      "If initials are provided as a single letter or more than two, flag as usage_rule violation.",
+      "If avatar is given an onClick other than user menu trigger, flag and ask for clarification."
+    ],
+    "token_resolution": "Skeleton state uses Surface.Skeleton token, not a custom color."
+  },
+  "embedding_text": "Avatar component. Represents a person with photo image or two-letter initials when no image available. Sizes: 40px large, 32px small. Always circular pill radius. Non-interactive except for user menu trigger. Skeleton state for loading. Initials must be two letters first and last name."
+}

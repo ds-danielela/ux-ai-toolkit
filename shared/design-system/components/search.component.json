@@ -1,0 +1,69 @@
+{
+  "id": "component-search",
+  "name": "Search",
+  "canonical_name": "Search",
+  "aliases": ["search field", "search input", "filter field", "find"],
+  "category": "Forms",
+  "version": "0.33.0",
+  "sources": {
+    "figma": true,
+    "zeroheight_url": "https://zeroheight.com/0b922d40b/p/36c5ff",
+    "storybook": true,
+    "storybook_url": "https://storybook-coreui-d2-euw3.d.dscore.com/#/Components/Search%20Field",
+    "doc_ready": true,
+    "storybook_ready": true
+  },
+  "variants": [
+    { "name": "filter", "description": "Filters a visible dataset. Search triggers as user types. No suggestions dropdown." },
+    { "name": "with_suggestions", "description": "Shows a result list below the field. Includes loading, no-results and lazy-load states." }
+  ],
+  "states": ["empty", "focused", "active", "loading", "no_results"],
+  "props": {
+    "variant": { "type": "enum", "values": ["filter", "with_suggestions"], "default": "filter" },
+    "placeholder": { "type": "string", "required": true, "note": "Always provide placeholder text when field is empty." },
+    "value": { "type": "string", "default": "" },
+    "on_change": { "type": "function", "required": true },
+    "on_reset": { "type": "function", "required": true, "note": "Reset icon appears after user types. Clears field." },
+    "suggestions": { "type": "SuggestionItem[] | null", "default": null, "note": "with_suggestions variant only" },
+    "is_loading": { "type": "boolean", "default": false, "note": "Shows 'Loading results' with progress indicator" },
+    "lazy_load": { "type": "boolean", "default": false }
+  },
+  "suggestion_display": {
+    "large_screen": "6 full items + partially visible 7th",
+    "small_screen": "3 full items + partially visible 4th",
+    "stacking": "Result list overlays content below — does not shift layout"
+  },
+  "tokens": {
+    "spacing": {
+      "horizontal_padding": { "token": "Spacing.Component.M", "value": "16px" },
+      "vertical_padding": { "token": "Spacing.Component.XS", "value": "8px" }
+    },
+    "radius": { "token": "Border.Radius.Standard", "value": "12px" },
+    "border_width": {
+      "standard": { "token": "Border.Width.Standard", "value": "1px" },
+      "focus": { "token": "Border.Width.Focus", "value": "2px" }
+    },
+    "colors": {
+      "surface": { "token": "Surface.Standard", "light": "#FFFFFF", "dark": "#242424" },
+      "border": { "token": "Border.Standard", "light": "#D4D4D4", "dark": "#3A3A3A" },
+      "border_focused": { "token": "Border.Focused", "light": "#1F6FEB", "dark": "#5599F5" },
+      "icon": { "token": "Icon.Subdued", "light": "#6E6E6E", "dark": "#9A9A9A" },
+      "suggestions_surface": { "token": "Surface.Dropdown", "light": "#FFFFFF", "dark": "#2C2C2C" }
+    },
+    "elevation": { "note": "Suggestions list uses higher stacking order — does not affect surrounding layout" }
+  },
+  "usage_rules": [
+    { "rule": "Always provide placeholder text", "severity": "error", "detail": "The search field must always have a placeholder text when empty. Never leave it blank." },
+    { "rule": "Do not use on small datasets", "severity": "warning", "detail": "Do not add a search field to a small set of data that doesn't benefit from filtering." },
+    { "rule": "Empty state on no results", "severity": "error", "detail": "When no results match, show the Empty state component. For with_suggestions variant, show an appropriate status message in the hint area." },
+    { "rule": "Loading state for suggestions", "severity": "info", "detail": "While suggestions are loading, display Loading results with an indeterminate progress indicator." },
+    { "rule": "Can be placed in universal action bar", "severity": "info", "detail": "Search field can be placed within the universal action bar above a table or container." }
+  ],
+  "agent_instructions": {
+    "confidence_blockers": [
+      "If ticket adds search to a small static list, flag as usage_rule warning.",
+      "If ticket does not handle the no-results state, flag — Empty state must be shown."
+    ]
+  },
+  "embedding_text": "Search field component. Filter content or show suggestions dropdown. Always has placeholder text. Reset icon after typing. Suggestions variant shows result list with loading lazy load no results states. Empty state on no results. Can be placed in universal action bar above table. Do not use on small datasets."
+}

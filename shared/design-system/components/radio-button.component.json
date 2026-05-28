@@ -1,0 +1,70 @@
+{
+  "id": "component-radio-button",
+  "name": "Radio button",
+  "canonical_name": "Radio button",
+  "aliases": ["radio", "radio group", "single select control", "exclusive choice"],
+  "category": "Forms",
+  "version": "0.33.0",
+  "sources": {
+    "figma": true,
+    "zeroheight_url": "https://zeroheight.com/0b922d40b/p/973639",
+    "storybook": true,
+    "storybook_url": "https://storybook-coreui-d2-euw3.d.dscore.com/#/Components/Radio%20Button",
+    "doc_ready": true,
+    "storybook_ready": true
+  },
+  "states": ["unselected", "selected", "disabled", "focused", "error"],
+  "props": {
+    "options": { "type": "RadioOption[]", "required": true, "note": "Min 2, max 10 options. More than 10: use Dropdown." },
+    "selected_value": { "type": "string | null", "default": null, "note": "Do not preselect if choice is critical." },
+    "on_change": { "type": "function", "required": true },
+    "disabled": { "type": "boolean", "default": false }
+  },
+  "option_schema": {
+    "label": { "type": "string", "required": true, "note": "Sentence case. No punctuation at end." },
+    "value": { "type": "string", "required": true },
+    "sublabel": { "type": "string | null", "default": null },
+    "disabled": { "type": "boolean", "default": false }
+  },
+  "tokens": {
+    "sizing": { "value": "20px", "note": "Fixed size radio control" },
+    "border_width": {
+      "interactive": { "token": "Border.Width.Interactive", "value": "2px" },
+      "focus": { "token": "Border.Width.Focus", "value": "2px" }
+    },
+    "colors": {
+      "selected": { "token": "Surface.Interactive.Standard", "light": "#1F6FEB", "dark": "#1F6FEB" },
+      "selected_hovered": { "token": "Surface.Interactive.Hovered", "light": "#1A64D6", "dark": "#3D84F0" },
+      "unselected_border": { "token": "Border.Standard", "light": "#D4D4D4", "dark": "#3A3A3A" },
+      "focus_ring": { "token": "Border.Focused", "light": "#1F6FEB", "dark": "#5599F5" },
+      "disabled": { "token": "Surface.Interactive.Disabled", "light": "#A8C8F8", "dark": "#1A3A6B" }
+    }
+  },
+  "decision_guide": {
+    "radio_vs_checkbox": "Radio: exclusive single choice. Checkbox: non-exclusive multi-choice.",
+    "radio_vs_dropdown": "Radio: use when options must always be visible and there are 2–10 options. Dropdown: use when options can be collapsed or there are more than 10.",
+    "none_option": "If user may select none, add a 'None' or 'Does not apply' option at the bottom of the list."
+  },
+  "usage_rules": [
+    { "rule": "Radio for exclusive single choice only", "severity": "error", "detail": "If multiple options can be selected simultaneously, use Checkbox instead." },
+    { "rule": "Min 2, max 10 options", "severity": "error", "detail": "Radio groups must have at least 2 options. For more than 10 options, use Dropdown instead." },
+    { "rule": "Do not preselect for critical choices", "severity": "warning", "detail": "Only preselect an option if the choice is not critical. Once selected, user cannot return to no selection." },
+    { "rule": "All options always visible", "severity": "info", "detail": "Radio buttons show all options at all times. If options can be collapsed, use Dropdown." },
+    { "rule": "No commas or semicolons at end of labels", "severity": "error", "detail": "Labels must not end with punctuation." },
+    { "rule": "Alphabetical sorting not recommended", "severity": "info", "detail": "Sort by frequency of use or logical order." },
+    { "rule": "Sentence case", "severity": "error", "detail": "All option labels must use sentence case." }
+  ],
+  "accessibility": {
+    "role": "radiogroup / radio",
+    "keyboard": ["Arrow keys to navigate within group", "Space to select"],
+    "label_association": "Group needs accessible label via aria-labelledby or fieldset/legend"
+  },
+  "agent_instructions": {
+    "confidence_blockers": [
+      "If ticket uses radio for multi-select, flag and suggest Checkbox.",
+      "If ticket has more than 10 radio options, flag and suggest Dropdown.",
+      "If ticket requires no-selection state in a radio group, remind to add None/Does not apply option."
+    ]
+  },
+  "embedding_text": "Radio button component. Exclusive single choice selection. Min 2 max 10 options always visible. Use Dropdown for more than 10 or collapsible. Use Checkbox for multi-select. No preselection for critical choices. Add None option if no-selection is valid. Sentence case labels no punctuation."
+}

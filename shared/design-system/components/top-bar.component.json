@@ -1,0 +1,53 @@
+{
+  "id": "component-top-bar",
+  "name": "Top bar",
+  "canonical_name": "Top bar",
+  "aliases": ["header", "app bar", "navigation bar", "global header", "toolbar"],
+  "category": "Navigation",
+  "version": "0.33.0",
+  "sources": {
+    "figma": true,
+    "zeroheight_url": "https://zeroheight.com/0b922d40b/p/4274c7",
+    "storybook": true,
+    "storybook_url": "https://storybook-coreui-d2-euw3.d.dscore.com/#/Components/Top%20Bar%20-%20Scaffold",
+    "doc_ready": true,
+    "storybook_ready": true
+  },
+  "variants": [
+    { "name": "standard", "description": "Full width for responsive layout S–M without main menu. Includes burger icon button for main menu overlay." },
+    { "name": "with_main_menu", "description": "For responsive layouts L–XL. Stretches to width remaining to the right of the main menu." }
+  ],
+  "props": {
+    "variant": { "type": "enum", "values": ["standard", "with_main_menu"], "default": "standard" },
+    "icon_buttons": { "type": "IconButton[]", "default": [], "note": "Global actions shown at the right. Only most important." },
+    "show_avatar": { "type": "boolean", "default": true, "note": "Avatar triggers user menu" },
+    "show_burger": { "type": "boolean", "default": false, "note": "Auto-shown in responsive layout M and S" }
+  },
+  "tokens": {
+    "spacing": {
+      "horizontal_padding": { "token": "Spacing.Component.XL", "value": "48px", "note": "Horizontal inner padding for top bar" }
+    },
+    "colors": {
+      "surface": { "token": "Surface.Standard", "light": "#FFFFFF", "dark": "#242424" },
+      "border_bottom": { "token": "Border.Standard", "light": "#D4D4D4", "dark": "#3A3A3A" }
+    },
+    "elevation": "elevation1"
+  },
+  "layout_behaviour": {
+    "with_main_menu": "Stretches to remaining width to the right of main menu (layout L–XL)",
+    "without_main_menu": "Full screen width (layout S–M)",
+    "height": "Determined by content"
+  },
+  "usage_rules": [
+    { "rule": "Already included in layout templates", "severity": "info", "detail": "Layout templates already contain a top bar. Do not add a second one." },
+    { "rule": "Only most important global functionality", "severity": "error", "detail": "Do not overcrowd the top bar. Only include the most important global actions as icon buttons." },
+    { "rule": "Top bar is not for page-level actions", "severity": "warning", "detail": "Page-specific actions belong in the page header or action bars, not the top bar." }
+  ],
+  "agent_instructions": {
+    "confidence_blockers": [
+      "If ticket adds a top bar to a layout that already includes one, flag as duplication.",
+      "If ticket adds many icon buttons to top bar, flag and ask which are truly global and essential."
+    ]
+  },
+  "embedding_text": "Top bar component. Global header navigation bar app bar. Contains icon buttons for global functionality notifications user menu avatar. Burger icon for mobile layouts S M to show main menu overlay. Stretches full width or to right of main menu depending on layout. Already included in layout templates do not duplicate."
+}

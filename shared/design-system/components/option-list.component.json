@@ -1,0 +1,74 @@
+{
+  "id": "component-option-list",
+  "name": "Option list",
+  "canonical_name": "Option list",
+  "aliases": ["dropdown menu", "action menu", "select list", "context menu", "overflow menu"],
+  "category": "Navigation",
+  "version": "0.33.0",
+  "sources": {
+    "figma": true,
+    "zeroheight_url": "https://zeroheight.com/0b922d40b/p/08a681",
+    "storybook": true,
+    "storybook_url": "https://storybook-coreui-d2-euw3.d.dscore.com/#/Private/Option%20List",
+    "doc_ready": true,
+    "storybook_ready": true
+  },
+  "variants": [
+    { "name": "single_select", "description": "User selects one item. No checkboxes. Icons optional." },
+    { "name": "multi_select", "description": "User selects multiple items. Shows checkboxes. No icons." },
+    { "name": "actions", "description": "List of actions. All items must have icons." }
+  ],
+  "props": {
+    "items": { "type": "OptionItem[]", "required": true },
+    "variant": { "type": "enum", "values": ["single_select", "multi_select", "actions"], "required": true },
+    "searchable": { "type": "boolean", "default": false, "note": "Shows search field at top of list" },
+    "trigger": { "type": "dropdown | button", "required": true, "note": "The UI element that expands the list" },
+    "selected_values": { "type": "string[]", "default": [] },
+    "dividers": { "type": "number[]", "default": [], "note": "Index positions where dividers are placed between items" }
+  },
+  "item_schema": {
+    "label": { "type": "string", "required": true },
+    "value": { "type": "string", "required": true },
+    "sublabel": { "type": "string | null", "default": null },
+    "icon": { "type": "icon | null", "default": null },
+    "has_submenu": { "type": "boolean", "default": false },
+    "color_dot": { "type": "string | null", "default": null }
+  },
+  "tokens": {
+    "spacing": {
+      "trigger_gap": { "token": "Spacing.Component.XXS", "value": "4px", "note": "Gap between trigger and option list" },
+      "item_horizontal": { "token": "Spacing.Component.S", "value": "12px" },
+      "item_icon_gap": { "token": "Spacing.Component.XS", "value": "8px" }
+    },
+    "colors": {
+      "surface": { "token": "Surface.Dropdown", "light": "#FFFFFF", "dark": "#2C2C2C" },
+      "item_hovered": { "token": "Surface.Hovered", "light": "#EFEFEF", "dark": "#2E2E2E" },
+      "item_selected": { "token": "Surface.Selected.Standard", "light": "#EBF2FF", "dark": "#0F2A4D" },
+      "border": { "token": "Border.Standard", "light": "#D4D4D4", "dark": "#3A3A3A" }
+    },
+    "radius": { "token": "Border.Radius.Standard", "value": "12px" },
+    "elevation": "elevation3"
+  },
+  "positioning": {
+    "default": "below trigger",
+    "fallback": "above trigger when insufficient space below",
+    "horizontal_with_dropdown": "matches dropdown width",
+    "horizontal_with_button": "determined by widest item, aligned to right"
+  },
+  "usage_rules": [
+    { "rule": "Multi-select must not have icons", "severity": "error", "detail": "In multi-select variant, do not show icons on items. Checkboxes are shown instead." },
+    { "rule": "Actions variant must have icons on all items", "severity": "error", "detail": "If the option list represents actions, every item must have an icon. Do not mix items with and without icons." },
+    { "rule": "Sort items logically", "severity": "warning", "detail": "List most common options first, or follow a logical order meaningful to the user." },
+    { "rule": "Labels in sentence case", "severity": "error", "detail": "All item labels must use sentence case. Never title case or all caps." },
+    { "rule": "Keep labels concise", "severity": "warning", "detail": "Keep item labels and sublabels short. Only provide a sublabel if it genuinely adds value." },
+    { "rule": "Already included in Dropdown and Button", "severity": "info", "detail": "Option list is bundled inside Dropdown and Button components. You typically do not add it separately." }
+  ],
+  "agent_instructions": {
+    "confidence_blockers": [
+      "If ticket requests multi_select with icons, flag as usage_rule violation.",
+      "If ticket requests actions variant with some items missing icons, flag.",
+      "If ticket does not specify trigger type (dropdown vs button), ask for clarification — positioning differs."
+    ]
+  },
+  "embedding_text": "Option list component. Dropdown menu action menu select list context menu overflow menu. Variants: single select, multi select with checkboxes no icons, actions all items have icons. Triggered by dropdown or button. Position below trigger or above if no space. Sentence case labels. Includes search field optionally."
+}

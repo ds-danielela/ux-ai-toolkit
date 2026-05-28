@@ -1,0 +1,86 @@
+{
+  "id": "component-segmented-control",
+  "name": "Segmented control",
+  "canonical_name": "Segmented control",
+  "aliases": ["toggle group", "mode switcher", "view switcher", "button group"],
+  "category": "Forms",
+  "version": "0.33.0",
+  "sources": {
+    "figma": true,
+    "zeroheight_url": "https://zeroheight.com/0b922d40b/p/53abd9",
+    "storybook": true,
+    "storybook_url": "https://storybook-coreui-d2-euw3.d.dscore.com/#/Components/Segmented%20Control",
+    "doc_ready": true,
+    "storybook_ready": true
+  },
+  "constraints": {
+    "min_segments": 2,
+    "max_segments": 5,
+    "note": "Description says 2-3 typical, up to 5 max. All segments have equal width."
+  },
+  "variants": [
+    { "name": "text", "description": "Segments show text labels. Sentence case. Descriptive and specific." },
+    { "name": "icon", "description": "Segments show icons only. Must use universally understood icons. Always accompanied by tooltips." }
+  ],
+  "states": ["unselected", "selected", "hovered", "pressed", "disabled", "focused"],
+  "props": {
+    "segments": { "type": "Segment[]", "required": true, "note": "2 to 5 segments. All same width." },
+    "selected_value": { "type": "string | null", "default": null, "note": "Do not preselect if choice is critical." },
+    "on_change": { "type": "function", "required": true },
+    "width": { "type": "enum", "values": ["fill", "hug"], "default": "fill", "note": "fill: stretches to parent. hug: sized to widest item." }
+  },
+  "segment_schema": {
+    "label": { "type": "string", "required": true, "note": "Used as tooltip text when icon-only. Sentence case." },
+    "value": { "type": "string", "required": true },
+    "icon": { "type": "icon | null", "default": null, "note": "If any segment has icon, all must be icon-only." },
+    "disabled": { "type": "boolean", "default": false }
+  },
+  "tokens": {
+    "sizing": { "height": "Fixed, determined by label/icon plus padding" },
+    "radius": {
+      "outer": { "token": "Border.Radius.Standard", "value": "12px" },
+      "inner_selected": { "token": "Border.Radius.Medium", "value": "8px", "note": "Inner selected segment uses smaller radius to reflect nesting" }
+    },
+    "colors": {
+      "track": { "token": "Surface.Subdued", "light": "#F5F5F5", "dark": "#1E1E1E" },
+      "selected": { "token": "Surface.Standard", "light": "#FFFFFF", "dark": "#242424" },
+      "selected_border": { "token": "Border.Standard", "light": "#D4D4D4", "dark": "#3A3A3A" },
+      "label_selected": { "token": "Text.Standard", "light": "#1A1A1A", "dark": "#F0F0F0" },
+      "label_unselected": { "token": "Text.Subdued", "light": "#6E6E6E", "dark": "#9A9A9A" },
+      "focus_ring": { "token": "Border.Focused", "light": "#1F6FEB", "dark": "#5599F5" }
+    },
+    "border_width": {
+      "focus": { "token": "Border.Width.Focus", "value": "2px" }
+    }
+  },
+  "decision_guide": {
+    "segmented_vs_radio": "Segmented control: 2–5 options, mode/view switching, always visible, compact UI. Radio button: longer labels, more options, or when selection semantics are important.",
+    "segmented_vs_tab": "Segmented control: switches modes or views within a component. Tab: organises full page sections.",
+    "segmented_vs_toggle_button": "Segmented control: mutually exclusive single selection. Toggle button: independent on/off per button."
+  },
+  "usage_rules": [
+    { "rule": "2 to 5 segments only", "severity": "error", "detail": "Segmented control supports a minimum of 2 and maximum of 5 segments. For more options, use Radio button or Dropdown." },
+    { "rule": "All segments either text or icon — never mixed", "severity": "error", "detail": "Within one segmented control, all segments must use the same type: all text labels or all icons. Never mix text and icon segments." },
+    { "rule": "Icon segments must have tooltips", "severity": "error", "detail": "When using icon-only segments, every segment must be accompanied by a tooltip using the label as tooltip text." },
+    { "rule": "Icons must be universally understood", "severity": "warning", "detail": "Only use icons whose meaning is universally clear without a label. Ambiguous icons must use text labels instead." },
+    { "rule": "All segments equal width", "severity": "info", "detail": "All segment items must have the same width within a single segmented control." },
+    { "rule": "Do not preselect for critical choices", "severity": "warning", "detail": "Only preselect if the choice is not critical. Once selected, user cannot return to no selection." },
+    { "rule": "Labels in sentence case", "severity": "error", "detail": "All segment text labels must use sentence case." },
+    { "rule": "Use for mode/view switching not navigation", "severity": "warning", "detail": "Use segmented control to switch modes or views within a component (e.g. list vs tile view). For page-level navigation, use Tabs." }
+  ],
+  "accessibility": {
+    "role": "radiogroup",
+    "segment_role": "radio",
+    "keyboard": ["Arrow keys to navigate", "Space to select"],
+    "tooltip_required": "When icon-only: tooltip must be present on each segment"
+  },
+  "agent_instructions": {
+    "confidence_blockers": [
+      "If ticket requests more than 5 segments, flag — use Radio button or Dropdown instead.",
+      "If ticket mixes text and icon segments, flag as usage_rule violation.",
+      "If ticket uses icon segments without specifying tooltips, flag.",
+      "If ticket uses segmented control for full page navigation, suggest Tab instead."
+    ]
+  },
+  "embedding_text": "Segmented control component. Mode view switcher toggle group. 2 to 5 equal-width segments. All text or all icon never mixed. Icon segments require tooltips universally understood metaphors. One selection at a time. Sentence case labels. For mode switching within component not page navigation. Use Tab for page sections."
+}

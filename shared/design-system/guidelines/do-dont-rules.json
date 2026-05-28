@@ -1,0 +1,342 @@
+{
+  "meta": {
+    "version": "0.33.0",
+    "description": "Machine-readable do/don't rules extracted from all component and foundation docs. Used by the validator agent to check generated code before staging.",
+    "sources": ["border.md","color-guidelines.md","spacing.md","typography.md","radius.md","elevation.md","accordion.md","avatar.md","banner.md","checkbox.md","empty-state.md","hero-modal.md","list.md","media-gallery.md","media-tile.md","option-list.md","page-header.md","popover.md","radio-button.md","search.md","segmented-control.md","slider.md","switch.md","tab.md","textfield.md","toast.md","topbar.md","common-actions.md"],
+    "agent_rule": "Run all rules with matching component_scope or scope=global against generated code. Severity=error blocks auto-merge. Severity=warning is flagged for human review."
+  },
+
+  "rules": [
+
+    {
+      "id": "rule-001", "scope": "global", "severity": "error",
+      "rule": "All text must use sentence case",
+      "detail": "Labels, headlines, placeholders, error messages, button labels, tab labels, option list items — everything uses sentence case. Never title case or ALL CAPS.",
+      "component_scope": ["Button","Tab","Option list","Checkbox","Radio button","Switch","Segmented control","Accordion","Empty state","Banner","Toast","Page header","Slider","Search","Text field"]
+    },
+    {
+      "id": "rule-002", "scope": "global", "severity": "error",
+      "rule": "Never use raw palette values — always use semantic tokens",
+      "detail": "dsBlue/500, #0F62FE etc. must never appear in component code. Only Action.*, Surface.*, Text.*, Border.*, Icon.* tokens.",
+      "component_scope": "all"
+    },
+    {
+      "id": "rule-003", "scope": "global", "severity": "error",
+      "rule": "One primary button per context",
+      "detail": "Never render more than one Button variant=primary in the same view, dialog, form, or section.",
+      "component_scope": ["Button","Page header","Modal","Hero modal","Alert dialog","Card","Container"]
+    },
+    {
+      "id": "rule-004", "scope": "global", "severity": "error",
+      "rule": "Do not disable the primary button when form is incomplete",
+      "detail": "Never use disabled state on primary button to indicate missing input. Show an Inline notification instead explaining what is needed.",
+      "component_scope": ["Button","Form"]
+    },
+    {
+      "id": "rule-005", "scope": "global", "severity": "error",
+      "rule": "Button sequence in top-placement contexts: primary rightmost",
+      "detail": "When actions appear at the top (page header, universal action bar), order right to left: primary → secondary → tertiary.",
+      "component_scope": ["Page header","Universal action bar"]
+    },
+    {
+      "id": "rule-006", "scope": "global", "severity": "error",
+      "rule": "Close buttons are always tertiary icon buttons with close icon",
+      "detail": "The closing action in popovers, modals, side sheets, and similar overlays is always a tertiary icon button. Never a text button.",
+      "component_scope": ["Modal","Hero modal","Popover","Side sheet","Info modal"]
+    },
+    {
+      "id": "rule-007", "scope": "global", "severity": "error",
+      "rule": "Border color and width tokens must match the same state",
+      "detail": "Border.Focused must pair with Border.Width.Focus. Border.Critical must pair with Border.Width.Critical. Never mix state tokens.",
+      "component_scope": ["Text field","Checkbox","Radio button","Switch","Button","Search","Dropdown","Date input","Slider","Text area","Password field"]
+    },
+    {
+      "id": "rule-008", "scope": "global", "severity": "error",
+      "rule": "Nested elements must use a smaller border radius than their parent",
+      "detail": "Child components inside a container must have a smaller rx value than the container. Same radius flattens visual hierarchy.",
+      "component_scope": ["Card","Container","Modal","Side sheet","Accordion","Segmented control"]
+    },
+    {
+      "id": "rule-009", "scope": "global", "severity": "error",
+      "rule": "No custom spacing values",
+      "detail": "All spacing must use Spacing.Component.* or Spacing.Layout.* tokens. No arbitrary pixel values.",
+      "component_scope": "all"
+    },
+    {
+      "id": "rule-010", "scope": "global", "severity": "error",
+      "rule": "Semantic icon/color/surface must come from the same variant group",
+      "detail": "Critical: Icon.Critical + Border.Critical + Surface.Critical. Warning: Icon.Warning + Border.Warning + Surface.Warning. Never mix e.g. warning icon with critical surface.",
+      "component_scope": ["Banner","Toast","Inline notification","Tag"]
+    },
+
+    {
+      "id": "rule-011", "component_scope": ["Accordion"], "severity": "error",
+      "rule": "Never nest accordions",
+      "detail": "Do not place an accordion inside another accordion. Use separate accordions instead."
+    },
+    {
+      "id": "rule-012", "component_scope": ["Accordion"], "severity": "error",
+      "rule": "Accordion wrapped in container only when stand-alone",
+      "detail": "Use container wrapping only when accordion is placed directly on a page. When inside a side sheet, modal, or other container — no wrapping."
+    },
+    {
+      "id": "rule-013", "component_scope": ["Accordion"], "severity": "warning",
+      "rule": "Use compact size in dense layouts",
+      "detail": "Use compact variant inside side sheets and modals. Do not use base size in dense contexts."
+    },
+
+    {
+      "id": "rule-014", "component_scope": ["Avatar"], "severity": "error",
+      "rule": "Initials must be exactly two letters",
+      "detail": "Always first name initial + last name initial. e.g. LH for Linda Hall. Never one letter or more than two."
+    },
+    {
+      "id": "rule-015", "component_scope": ["Avatar"], "severity": "error",
+      "rule": "Avatar is not interactive except for user menu trigger",
+      "detail": "Do not add click handlers to avatars for purposes other than opening the user menu."
+    },
+    {
+      "id": "rule-016", "component_scope": ["Avatar"], "severity": "warning",
+      "rule": "Avoid avatar when image is unlikely to be available",
+      "detail": "For entities like patients where images are rarely available, avoid avatar component."
+    },
+
+    {
+      "id": "rule-017", "component_scope": ["Banner"], "severity": "error",
+      "rule": "Only one banner at a time — never stack",
+      "detail": "Never show more than one banner simultaneously."
+    },
+    {
+      "id": "rule-018", "component_scope": ["Banner"], "severity": "error",
+      "rule": "No custom icons or colors in banner",
+      "detail": "Only use the four provided variants. Do not introduce custom icons or colors."
+    },
+    {
+      "id": "rule-019", "component_scope": ["Banner"], "severity": "error",
+      "rule": "Banner placement is above page content",
+      "detail": "Banners must be placed above page content or above the wizard top bar."
+    },
+
+    {
+      "id": "rule-020", "component_scope": ["Checkbox"], "severity": "error",
+      "rule": "Use checkbox for non-exclusive multi-select only",
+      "detail": "For exclusive single-choice selection, use Radio button instead."
+    },
+    {
+      "id": "rule-021", "component_scope": ["Checkbox"], "severity": "error",
+      "rule": "No commas or semicolons at end of checkbox labels",
+      "detail": "Checkbox labels must not end with punctuation."
+    },
+    {
+      "id": "rule-022", "component_scope": ["Checkbox"], "severity": "info",
+      "rule": "Long labels wrap — never truncate",
+      "detail": "If a label is too long, allow it to wrap to a second line. Never truncate."
+    },
+
+    {
+      "id": "rule-023", "component_scope": ["Empty state"], "severity": "error",
+      "rule": "Illustration only — no icons or images in empty state",
+      "detail": "The visual element must be an illustration. Never an icon or photograph."
+    },
+    {
+      "id": "rule-024", "component_scope": ["Empty state"], "severity": "error",
+      "rule": "No technical jargon in empty state body",
+      "detail": "Body text must be plain, coherent, and solution-oriented."
+    },
+    {
+      "id": "rule-025", "component_scope": ["Empty state"], "severity": "warning",
+      "rule": "Empty state should have a CTA action",
+      "detail": "Avoid leaving an empty state without an actionable next step for the user."
+    },
+
+    {
+      "id": "rule-026", "component_scope": ["Hero modal"], "severity": "error",
+      "rule": "No fullscreen hero modal",
+      "detail": "Hero modal has no fullscreen variant. Do not attempt to make it fullscreen."
+    },
+    {
+      "id": "rule-027", "component_scope": ["Hero modal"], "severity": "warning",
+      "rule": "Use hero modal sparingly",
+      "detail": "Hero modals interrupt the user's workflow. Use only to introduce new features."
+    },
+
+    {
+      "id": "rule-028", "component_scope": ["List"], "severity": "error",
+      "rule": "All list items must have consistent structure",
+      "detail": "All items must use the same leading element type (all icons, all images, or none). Do not mix."
+    },
+
+    {
+      "id": "rule-029", "component_scope": ["Media gallery","Media tile"], "severity": "error",
+      "rule": "All tiles in a gallery must consistently show or hide details",
+      "detail": "All tiles either show details (sublabel, actions) or none do. Never mixed."
+    },
+    {
+      "id": "rule-030", "component_scope": ["Media tile"], "severity": "error",
+      "rule": "Media tile only for graphical objects",
+      "detail": "Do not use for listing actions or non-visual content."
+    },
+
+    {
+      "id": "rule-031", "component_scope": ["Option list"], "severity": "error",
+      "rule": "Multi-select option list must not have icons",
+      "detail": "In multi-select variant, no icons on items. Checkboxes are shown instead."
+    },
+    {
+      "id": "rule-032", "component_scope": ["Option list"], "severity": "error",
+      "rule": "Actions variant option list: all items must have icons",
+      "detail": "If the list represents actions, every item must have an icon. No partial icon sets."
+    },
+
+    {
+      "id": "rule-033", "component_scope": ["Page header"], "severity": "error",
+      "rule": "Max 3 actions in page header (1 on layout S)",
+      "detail": "No more than 3 action buttons. On layout S, maximum 1 button — others go in option list."
+    },
+    {
+      "id": "rule-034", "component_scope": ["Page header"], "severity": "error",
+      "rule": "Status tags only on second-level page headers",
+      "detail": "Status tags are not allowed on top-level page headers."
+    },
+    {
+      "id": "rule-035", "component_scope": ["Page header"], "severity": "error",
+      "rule": "Back button label must match parent page headline",
+      "detail": "The back button label on second-level pages must match the headline of the corresponding top-level page."
+    },
+
+    {
+      "id": "rule-036", "component_scope": ["Popover"], "severity": "error",
+      "rule": "Only one popover at a time",
+      "detail": "Never show multiple popovers simultaneously."
+    },
+    {
+      "id": "rule-037", "component_scope": ["Popover"], "severity": "error",
+      "rule": "Do not use popover for critical information",
+      "detail": "Use Modal or a notification component instead."
+    },
+
+    {
+      "id": "rule-038", "component_scope": ["Radio button"], "severity": "error",
+      "rule": "Radio button for exclusive single choice only",
+      "detail": "For multi-select, use Checkbox instead."
+    },
+    {
+      "id": "rule-039", "component_scope": ["Radio button"], "severity": "error",
+      "rule": "Radio button group: min 2, max 10 options",
+      "detail": "For more than 10 options, use Dropdown instead."
+    },
+    {
+      "id": "rule-040", "component_scope": ["Radio button"], "severity": "error",
+      "rule": "No commas or semicolons at end of radio labels",
+      "detail": "Labels must not end with punctuation."
+    },
+
+    {
+      "id": "rule-041", "component_scope": ["Search"], "severity": "error",
+      "rule": "Search field must always have placeholder text",
+      "detail": "Never leave the search field empty of placeholder text."
+    },
+    {
+      "id": "rule-042", "component_scope": ["Search"], "severity": "error",
+      "rule": "Show empty state when no search results",
+      "detail": "When no results match, always show the Empty state component."
+    },
+    {
+      "id": "rule-043", "component_scope": ["Search"], "severity": "warning",
+      "rule": "Do not use search on small datasets",
+      "detail": "Do not add search to a small static list that does not benefit from filtering."
+    },
+
+    {
+      "id": "rule-044", "component_scope": ["Segmented control"], "severity": "error",
+      "rule": "Segmented control: 2 to 5 segments only",
+      "detail": "Minimum 2, maximum 5 segments. Use Radio button or Dropdown for more."
+    },
+    {
+      "id": "rule-045", "component_scope": ["Segmented control"], "severity": "error",
+      "rule": "All segments must be text-only or icon-only — never mixed",
+      "detail": "Never mix text and icon segments in the same segmented control."
+    },
+    {
+      "id": "rule-046", "component_scope": ["Segmented control"], "severity": "error",
+      "rule": "Icon-only segmented control must have tooltips on every segment",
+      "detail": "When using icons, every segment requires a tooltip."
+    },
+
+    {
+      "id": "rule-047", "component_scope": ["Slider"], "severity": "error",
+      "rule": "Centered slider requires symmetric range",
+      "detail": "Centered variant must have a symmetric range around zero e.g. -100 to 100."
+    },
+    {
+      "id": "rule-048", "component_scope": ["Slider"], "severity": "error",
+      "rule": "No value label when input field is shown",
+      "detail": "When with_input_field=true, value_label must be set to never."
+    },
+    {
+      "id": "rule-049", "component_scope": ["Slider"], "severity": "warning",
+      "rule": "Do not use slider for very large or very small ranges",
+      "detail": "Avoid ranges like 1–1000 (too large) or 1–3 (too small). Discrete variant unsuitable for 2–3 intervals."
+    },
+
+    {
+      "id": "rule-050", "component_scope": ["Switch"], "severity": "error",
+      "rule": "Switch label must not include on/off/enabled/disabled",
+      "detail": "The switch control itself communicates the state. Do not include state words in the label."
+    },
+    {
+      "id": "rule-051", "component_scope": ["Switch"], "severity": "error",
+      "rule": "Switch is for activation only — not selection",
+      "detail": "For selecting from a list or indeterminate state, use Checkbox."
+    },
+
+    {
+      "id": "rule-052", "component_scope": ["Tab"], "severity": "error",
+      "rule": "Icons must be consistent across all tabs in a group",
+      "detail": "Either all tabs have icons or none do. Never mixed."
+    },
+    {
+      "id": "rule-053", "component_scope": ["Tab"], "severity": "error",
+      "rule": "Tab labels must never be truncated",
+      "detail": "If space is insufficient the tab group becomes scrollable."
+    },
+
+    {
+      "id": "rule-054", "component_scope": ["Text field"], "severity": "error",
+      "rule": "Do not mark required fields with asterisk or required label",
+      "detail": "Only mark optional fields by appending (optional) to the label."
+    },
+    {
+      "id": "rule-055", "component_scope": ["Text field"], "severity": "error",
+      "rule": "Error message replaces help text — never show both",
+      "detail": "On validation error, error message takes the place of help text."
+    },
+    {
+      "id": "rule-056", "component_scope": ["Text field"], "severity": "error",
+      "rule": "Help text must not repeat the label",
+      "detail": "Help text adds new context — never restates the label or placeholder."
+    },
+
+    {
+      "id": "rule-057", "component_scope": ["Toast"], "severity": "error",
+      "rule": "Do not use toast for critical blocking interactions",
+      "detail": "If user must immediately respond, use Alert dialog. Toasts are ephemeral and auto-dismiss."
+    },
+    {
+      "id": "rule-058", "component_scope": ["Toast"], "severity": "error",
+      "rule": "Toast action labels must be descriptive — not OK or Cancel",
+      "detail": "Action labels must clearly describe what happens e.g. Delete, Keep."
+    },
+    {
+      "id": "rule-059", "component_scope": ["Toast"], "severity": "error",
+      "rule": "No custom icons or colors in toast",
+      "detail": "Only use the four provided variants."
+    },
+
+    {
+      "id": "rule-060", "component_scope": ["Top bar","Page header"], "severity": "info",
+      "rule": "Do not add top bar or page header to layouts that already contain one",
+      "detail": "Layout templates already include these components. Adding a second is a duplication error."
+    }
+  ]
+}

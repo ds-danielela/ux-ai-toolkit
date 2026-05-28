@@ -1,0 +1,346 @@
+{
+  "light": {
+    "Background": {
+      "Background.Standard": "#F5F5F5",
+      "Background.Dimmer": "#E0E0E0",
+      "Image.Background.Standard": "#FFFFFF",
+      "Image.Background.Selected": "#D6E4FF"
+    },
+    "Surface": {
+      "Generic": {
+        "Surface.Standard": "#FFFFFF",
+        "Surface.Subdued": "#F5F5F5",
+        "Surface.Hovered": "#EFEFEF",
+        "Surface.Pressed": "#E5E5E5",
+        "Surface.Disabled": "#FAFAFA",
+        "Surface.Contrast": "#1A1A1A"
+      },
+      "Component_specific": {
+        "Surface.Dropdown": "#FFFFFF",
+        "Surface.Skeleton": "#E8E8E8",
+        "Surface.Skeleton1": "#F0F0F0",
+        "Surface.Skeleton2": "#F5F5F5"
+      },
+      "Semantic": {
+        "Surface.Critical": "#FFF0F0",
+        "Surface.Warning": "#FFF8EC",
+        "Surface.Success": "#F0FFF4",
+        "Surface.Information": "#F0F7FF"
+      },
+      "Semantic_subdued": {
+        "Surface.Critical": "#FFF7F7",
+        "Surface.Warning": "#FFFDF5",
+        "Surface.Success": "#F7FFFA",
+        "Surface.Information": "#F5FAFF"
+      },
+      "Selected_surfaces": {
+        "Surface.Selected.Standard": "#EBF2FF",
+        "Surface.Selected.Hovered": "#DCEEFF",
+        "Surface.Selected.Pressed": "#C8DFFF",
+        "Surface.Selected.Disabled": "#F5F9FF"
+      },
+      "Interactive": {
+        "Surface.Interactive.Standard": "#1F6FEB",
+        "Surface.Interactive.Hovered": "#1A64D6",
+        "Surface.Interactive.Pressed": "#1558C0",
+        "Surface.Interactive.Disabled": "#A8C8F8"
+      },
+      "Neutral": {
+        "Surface.Neutral.Standard": "#6E6E6E",
+        "Surface.Neutral.Hovered": "#5E5E5E",
+        "Surface.Neutral.Pressed": "#4E4E4E"
+      }
+    },
+    "Text": {
+      "Generic": {
+        "Text.Standard": "#1A1A1A",
+        "Text.Subdued": "#6E6E6E",
+        "Text.Disabled": "#B0B0B0"
+      },
+      "Semantic": {
+        "Text.Critical": "#D92B2B"
+      },
+      "Interactive": {
+        "Text.Interactive": "#1F6FEB",
+        "Text.Interactive.Hovered": "#1558C0",
+        "Text.Interactive.Pressed": "#0F4BAA"
+      },
+      "On_specific_background": {
+        "Text.On.Interactive": "#FFFFFF",
+        "Text.On.Primary": "#FFFFFF",
+        "Text.On.Critical": "#FFFFFF",
+        "Text.On.Contrast": "#FFFFFF",
+        "Text.On.Contrast.Disabled": "#AAAAAA",
+        "Text.On.Dimmer": "#F0F0F0",
+        "Text.On.Chart": "#000000"
+      }
+    },
+    "Icons": {
+      "Generic": {
+        "Icon.Standard": "#1A1A1A",
+        "Icon.Subdued": "#6E6E6E",
+        "Icon.Disabled": "#B0B0B0",
+        "Icon.Read.Only": "#8A8A8A"
+      },
+      "Semantic": {
+        "Icon.Critical": "#D92B2B",
+        "Icon.Warning": "#E07B00",
+        "Icon.Success": "#1E8A3E",
+        "Icon.Information": "#1F6FEB"
+      },
+      "Interactive": {
+        "Icon.Interactive": "#1F6FEB",
+        "Icon.Interactive.Hovered": "#1558C0",
+        "Icon.Interactive.Pressed": "#0F4BAA"
+      },
+      "On_specific_background": {
+        "Icon.On.Interactive": "#FFFFFF",
+        "Icon.On.Primary": "#FFFFFF",
+        "Icon.On.Critical": "#FFFFFF",
+        "Icon.On.Contrast": "#FFFFFF",
+        "Icon.On.Dimmer": "#F0F0F0"
+      }
+    },
+    "Border": {
+      "Generic": {
+        "Border.Standard": "#D4D4D4",
+        "Border.Subdued": "#E8E8E8",
+        "Border.Disabled": "#EBEBEB",
+        "Border.Focused": "#1F6FEB"
+      },
+      "Semantic": {
+        "Border.Critical": "#D92B2B",
+        "Border.Warning": "#E07B00",
+        "Border.Success": "#1E8A3E",
+        "Border.Information": "#1F6FEB"
+      },
+      "Interactive": {
+        "Border.Interactive": "#1F6FEB",
+        "Border.Interactive.Hovered": "#1558C0",
+        "Border.Interactive.Pressed": "#0F4BAA"
+      },
+      "Annotations": {
+        "Border.Annotation.Critical": "#D92B2B",
+        "Border.Annotation.Warning": "#E07B00",
+        "Border.Annotation.Success": "#1E8A3E",
+        "Border.Annotation.Information": "#1F6FEB"
+      },
+      "Selection": {
+        "Border.Selected.Standard": "#1F6FEB",
+        "Border.Selected.Hovered": "#1558C0",
+        "Border.Selected.Pressed": "#0F4BAA"
+      },
+      "On_specific_background": {
+        "Border.On.Image": "#FFFFFF"
+      }
+    },
+    "Action": {
+      "Primary": {
+        "Action.Primary.Standard": "#1F6FEB",
+        "Action.Primary.Hovered": "#1A64D6",
+        "Action.Primary.Pressed": "#1558C0",
+        "Action.Primary.Disabled": "#A8C8F8"
+      },
+      "Secondary": {
+        "Action.Secondary.Standard": "#FFFFFF",
+        "Action.Secondary.Hovered": "#F5F5F5",
+        "Action.Secondary.Pressed": "#EBEBEB",
+        "Action.Secondary.Disabled": "#FAFAFA"
+      },
+      "Destructive": {
+        "Action.Destructive.Standard": "#FFFFFF",
+        "Action.Destructive.Hovered": "#FFF0F0",
+        "Action.Destructive.Pressed": "#FFE0E0",
+        "Action.Destructive.Disabled": "#FAFAFA"
+      },
+      "Tertiary": {
+        "Action.Tertiary.Hovered": "#F0F0F0",
+        "Action.Tertiary.Pressed": "#E5E5E5"
+      },
+      "On_Contrast": {
+        "Action.On.Contrast.Hovered": "#2A2A2A",
+        "Action.On.Contrast.Pressed": "#383838"
+      }
+    },
+    "Chart": {
+      "Chart.Category1": "#F4C542",
+      "Chart.Category2": "#F47C42",
+      "Chart.Category3": "#6BCB77",
+      "Chart.Category4": "#4D9DE0",
+      "Chart.Category5": "#C77DFF",
+      "Chart.Category6": "#FF6B9D"
+    }
+  },
+  "dark": {
+    "Background": {
+      "Background.Standard": "#1A1A1A",
+      "Background.Dimmer": "#111111",
+      "CardImage.Background.Standard": "#2A2A2A",
+      "CardImage.Background.Selected": "#1A3A6B"
+    },
+    "Surface": {
+      "Generic": {
+        "Surface.Standard": "#242424",
+        "Surface.Subdued": "#1E1E1E",
+        "Surface.Hovered": "#2E2E2E",
+        "Surface.Pressed": "#333333",
+        "Surface.Disabled": "#1E1E1E",
+        "Surface.Contrast": "#F5F5F5"
+      },
+      "Component_specific": {
+        "Surface.Dropdown": "#2C2C2C",
+        "Surface.Skeleton": "#2E2E2E",
+        "Surface.Skeleton1": "#333333",
+        "Surface.Skeleton2": "#3A3A3A"
+      },
+      "Semantic": {
+        "Surface.Critical": "#3D0F0F",
+        "Surface.Warning": "#3D2400",
+        "Surface.Success": "#0D2E1A",
+        "Surface.Information": "#0D2040"
+      },
+      "Semantic_subdued": {
+        "Surface.Critical": "#2E0A0A",
+        "Surface.Warning": "#2E1A00",
+        "Surface.Success": "#0A2014",
+        "Surface.Information": "#0A1830"
+      },
+      "Selected_surfaces": {
+        "Surface.Selected.Standard": "#0F2A4D",
+        "Surface.Selected.Hovered": "#153566",
+        "Surface.Selected.Pressed": "#1A3D73",
+        "Surface.Selected.Disabled": "#0A1E38"
+      },
+      "Interactive": {
+        "Surface.Interactive.Standard": "#1F6FEB",
+        "Surface.Interactive.Hovered": "#3D84F0",
+        "Surface.Interactive.Pressed": "#5599F5",
+        "Surface.Interactive.Disabled": "#1A3A6B"
+      },
+      "Neutral": {
+        "Surface.Neutral.Standard": "#6E6E6E",
+        "Surface.Neutral.Hovered": "#7E7E7E",
+        "Surface.Neutral.Pressed": "#8E8E8E"
+      }
+    },
+    "Text": {
+      "Generic": {
+        "Text.Standard": "#F0F0F0",
+        "Text.Subdued": "#9A9A9A",
+        "Text.Disabled": "#4A4A4A"
+      },
+      "Semantic": {
+        "Text.Critical": "#FF6B6B"
+      },
+      "Interactive": {
+        "Text.Interactive": "#5599F5",
+        "Text.Interactive.Hovered": "#70AAFF",
+        "Text.Interactive.Pressed": "#85BBFF"
+      },
+      "On_specific_background": {
+        "Text.On.Interactive": "#FFFFFF",
+        "Text.On.Primary": "#FFFFFF",
+        "Text.On.Critical": "#FFFFFF",
+        "Text.On.Contrast": "#1A1A1A",
+        "Text.On.Contrast.Disabled": "#555555",
+        "Text.On.Dimmer": "#C0C0C0",
+        "Text.On.Chart": "#FFFFFF"
+      }
+    },
+    "Icons": {
+      "Generic": {
+        "Icon.Standard": "#F0F0F0",
+        "Icon.Subdued": "#9A9A9A",
+        "Icon.Disabled": "#4A4A4A",
+        "Icon.Read.Only": "#707070"
+      },
+      "Semantic": {
+        "Icon.Critical": "#FF6B6B",
+        "Icon.Warning": "#FFB347",
+        "Icon.Success": "#4DD97A",
+        "Icon.Information": "#5599F5"
+      },
+      "Interactive": {
+        "Icon.Interactive": "#5599F5",
+        "Icon.Interactive.Hovered": "#70AAFF",
+        "Icon.Interactive.Pressed": "#85BBFF"
+      },
+      "On_specific_background": {
+        "Icon.On.Interactive": "#FFFFFF",
+        "Icon.On.Primary": "#FFFFFF",
+        "Icon.On.Critical": "#FFFFFF",
+        "Icon.On.Contrast": "#1A1A1A",
+        "Icon.On.Dimmer": "#C0C0C0"
+      }
+    },
+    "Border": {
+      "Generic": {
+        "Border.Standard": "#3A3A3A",
+        "Border.Subdued": "#2E2E2E",
+        "Border.Disabled": "#2A2A2A",
+        "Border.Focused": "#5599F5"
+      },
+      "Semantic": {
+        "Border.Critical": "#FF6B6B",
+        "Border.Warning": "#FFB347",
+        "Border.Success": "#4DD97A",
+        "Border.Information": "#5599F5"
+      },
+      "Interactive": {
+        "Border.Interactive": "#5599F5",
+        "Border.Interactive.Hovered": "#70AAFF",
+        "Border.Interactive.Pressed": "#85BBFF"
+      },
+      "Annotations": {
+        "Border.Annotation.Critical": "#FF6B6B",
+        "Border.Annotation.Warning": "#FFB347",
+        "Border.Annotation.Success": "#4DD97A",
+        "Border.Annotation.Information": "#5599F5"
+      },
+      "Selection": {
+        "Border.Selected.Standard": "#5599F5",
+        "Border.Selected.Hovered": "#70AAFF",
+        "Border.Selected.Pressed": "#85BBFF"
+      },
+      "On_specific_background": {
+        "Border.On.Image": "#FFFFFF"
+      }
+    },
+    "Action": {
+      "Primary": {
+        "Action.Primary.Standard": "#1F6FEB",
+        "Action.Primary.Hovered": "#3D84F0",
+        "Action.Primary.Pressed": "#5599F5",
+        "Action.Primary.Disabled": "#1A3A6B"
+      },
+      "Secondary": {
+        "Action.Secondary.Standard": "#2A2A2A",
+        "Action.Secondary.Hovered": "#333333",
+        "Action.Secondary.Pressed": "#3A3A3A",
+        "Action.Secondary.Disabled": "#1E1E1E"
+      },
+      "Destructive": {
+        "Action.Destructive.Standard": "#2A2A2A",
+        "Action.Destructive.Hovered": "#3D0F0F",
+        "Action.Destructive.Pressed": "#4D1515",
+        "Action.Destructive.Disabled": "#1E1E1E"
+      },
+      "Tertiary": {
+        "Action.Tertiary.Hovered": "#2E2E2E",
+        "Action.Tertiary.Pressed": "#383838"
+      },
+      "On_Contrast": {
+        "Action.On.Contrast.Hovered": "#E5E5E5",
+        "Action.On.Contrast.Pressed": "#D5D5D5"
+      }
+    },
+    "Chart": {
+      "Chart.Category1": "#F4C542",
+      "Chart.Category2": "#F47C42",
+      "Chart.Category3": "#6BCB77",
+      "Chart.Category4": "#4D9DE0",
+      "Chart.Category5": "#C77DFF",
+      "Chart.Category6": "#FF6B9D"
+    }
+  }
+}

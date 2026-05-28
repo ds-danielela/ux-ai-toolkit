@@ -1,0 +1,674 @@
+{
+  "meta": {
+    "version": "0.33.0",
+    "figma_toolkit_version": "0.33.0",
+    "zeroheight_version": "0.33.0",
+    "storybook_version": "50.3.0",
+    "total_components": 59,
+    "fully_ready": 55,
+    "gaps": 4,
+    "generated_from": "component-status.md",
+    "agent_rule": "If storybook_ready=false OR doc_ready=false: output a warning, reduce confidence score, and do NOT auto-generate code for this component. Flag for human resolution first."
+  },
+  "gap_summary": [
+    { "name": "AI button",            "gap": "doc_ready=false",       "risk": "No usage rules — agent may misuse in generated output" },
+    { "name": "AI side panel",        "gap": "doc_ready=false",       "risk": "No context on behaviour, slots or restrictions" },
+    { "name": "Battery indicator",    "gap": "storybook_ready=false", "risk": "No code reference — agent cannot verify implementation" },
+    { "name": "Form",                 "gap": "storybook_ready=false", "risk": "HIGH — Form is high-frequency in tickets. No code reference." },
+    { "name": "Universal action bar", "gap": "storybook_ready=false", "risk": "Agent cannot verify props or slot structure in code" }
+  ],
+  "components": [
+    {
+      "name": "Accordion",
+      "id": "component-accordion",
+      "category": "Layout",
+      "figma_ready": true,
+      "doc_ready": true,
+      "storybook_ready": true,
+      "zeroheight_url": "https://zeroheight.com/0b922d40b/p/435154",
+      "record_file": "accordion.component.json"
+    },
+    {
+      "name": "Alert dialog",
+      "id": "component-alert-dialog",
+      "category": "Overlays",
+      "figma_ready": true,
+      "doc_ready": true,
+      "storybook_ready": true,
+      "zeroheight_url": "https://zeroheight.com/0b922d40b/p/48505e",
+      "record_file": null
+    },
+    {
+      "name": "AI button",
+      "id": "component-ai-button",
+      "category": "Actions",
+      "figma_ready": true,
+      "doc_ready": false,
+      "storybook_ready": true,
+      "zeroheight_url": null,
+      "record_file": null,
+      "agent_flag": "doc_ready=false — no usage rules available. Do not auto-generate."
+    },
+    {
+      "name": "AI side panel",
+      "id": "component-ai-side-panel",
+      "category": "Layout",
+      "figma_ready": true,
+      "doc_ready": false,
+      "storybook_ready": true,
+      "zeroheight_url": null,
+      "record_file": null,
+      "agent_flag": "doc_ready=false — no usage rules available. Do not auto-generate."
+    },
+    {
+      "name": "Avatar",
+      "id": "component-avatar",
+      "category": "Identity",
+      "figma_ready": true,
+      "doc_ready": true,
+      "storybook_ready": true,
+      "zeroheight_url": "https://zeroheight.com/0b922d40b/p/688aaa",
+      "record_file": "avatar.component.json"
+    },
+    {
+      "name": "Banner",
+      "id": "component-banner",
+      "category": "Feedback",
+      "figma_ready": true,
+      "doc_ready": true,
+      "storybook_ready": true,
+      "zeroheight_url": "https://zeroheight.com/0b922d40b/p/27f50c",
+      "record_file": "banner.component.json"
+    },
+    {
+      "name": "Battery indicator",
+      "id": "component-battery-indicator",
+      "category": "Display",
+      "figma_ready": true,
+      "doc_ready": true,
+      "storybook_ready": false,
+      "zeroheight_url": "https://zeroheight.com/0b922d40b/v/0/p/5898e9-battery-indicator",
+      "record_file": null,
+      "agent_flag": "storybook_ready=false — no code reference. Do not auto-generate."
+    },
+    {
+      "name": "Button",
+      "id": "component-button",
+      "category": "Actions",
+      "figma_ready": true,
+      "doc_ready": true,
+      "storybook_ready": true,
+      "zeroheight_url": "https://zeroheight.com/0b922d40b/p/156acf",
+      "record_file": "button.component.json"
+    },
+    {
+      "name": "Card",
+      "id": "component-card",
+      "category": "Layout",
+      "figma_ready": true,
+      "doc_ready": true,
+      "storybook_ready": true,
+      "zeroheight_url": "https://zeroheight.com/0b922d40b/p/172ef8",
+      "record_file": null
+    },
+    {
+      "name": "Checkbox",
+      "id": "component-checkbox",
+      "category": "Forms",
+      "figma_ready": true,
+      "doc_ready": true,
+      "storybook_ready": true,
+      "zeroheight_url": "https://zeroheight.com/0b922d40b/p/546c9e",
+      "record_file": "checkbox.component.json"
+    },
+    {
+      "name": "Color dot",
+      "id": "component-color-dot",
+      "category": "Display",
+      "figma_ready": true,
+      "doc_ready": true,
+      "storybook_ready": true,
+      "zeroheight_url": "https://zeroheight.com/0b922d40b/v/0/p/78ec82-color-dot",
+      "record_file": null
+    },
+    {
+      "name": "Container",
+      "id": "component-container",
+      "category": "Layout",
+      "figma_ready": true,
+      "doc_ready": true,
+      "storybook_ready": true,
+      "zeroheight_url": "https://zeroheight.com/0b922d40b/p/24be69",
+      "record_file": null
+    },
+    {
+      "name": "Date input",
+      "id": "component-date-input",
+      "category": "Forms",
+      "figma_ready": true,
+      "doc_ready": true,
+      "storybook_ready": true,
+      "zeroheight_url": "https://zeroheight.com/0b922d40b/p/1214b6",
+      "record_file": null
+    },
+    {
+      "name": "Dental chart",
+      "id": "component-dental-chart",
+      "category": "Specialised",
+      "figma_ready": true,
+      "doc_ready": true,
+      "storybook_ready": true,
+      "zeroheight_url": "https://zeroheight.com/0b922d40b/p/19ffd6",
+      "record_file": null
+    },
+    {
+      "name": "Divider",
+      "id": "component-divider",
+      "category": "Layout",
+      "figma_ready": true,
+      "doc_ready": true,
+      "storybook_ready": true,
+      "zeroheight_url": "https://zeroheight.com/0b922d40b/p/510a1c",
+      "record_file": null
+    },
+    {
+      "name": "Dropdown",
+      "id": "component-dropdown",
+      "category": "Forms",
+      "figma_ready": true,
+      "doc_ready": true,
+      "storybook_ready": true,
+      "zeroheight_url": "https://zeroheight.com/0b922d40b/p/509c11",
+      "record_file": null
+    },
+    {
+      "name": "Dropzone overlay",
+      "id": "component-dropzone-overlay",
+      "category": "Forms",
+      "figma_ready": true,
+      "doc_ready": true,
+      "storybook_ready": true,
+      "zeroheight_url": "https://zeroheight.com/0b922d40b/v/0/p/035be5-dropzone-overlay",
+      "record_file": null
+    },
+    {
+      "name": "Empty state",
+      "id": "component-empty-state",
+      "category": "Feedback",
+      "figma_ready": true,
+      "doc_ready": true,
+      "storybook_ready": true,
+      "zeroheight_url": "https://zeroheight.com/0b922d40b/p/02a0dc",
+      "record_file": "empty-state.component.json"
+    },
+    {
+      "name": "Form",
+      "id": "component-form",
+      "category": "Forms",
+      "figma_ready": true,
+      "doc_ready": true,
+      "storybook_ready": false,
+      "zeroheight_url": "https://zeroheight.com/0b922d40b/p/39721f",
+      "record_file": null,
+      "agent_flag": "storybook_ready=false — HIGH RISK. Form is high-frequency. No code reference. Do not auto-generate."
+    },
+    {
+      "name": "Hero modal",
+      "id": "component-hero-modal",
+      "category": "Overlays",
+      "figma_ready": true,
+      "doc_ready": true,
+      "storybook_ready": true,
+      "zeroheight_url": "https://zeroheight.com/0b922d40b/p/41c5d9",
+      "record_file": "hero-modal.component.json"
+    },
+    {
+      "name": "Info button",
+      "id": "component-info-button",
+      "category": "Actions",
+      "figma_ready": true,
+      "doc_ready": true,
+      "storybook_ready": true,
+      "zeroheight_url": "https://zeroheight.com/0b922d40b/p/04f22a",
+      "record_file": null
+    },
+    {
+      "name": "Info modal",
+      "id": "component-info-modal",
+      "category": "Overlays",
+      "figma_ready": true,
+      "doc_ready": true,
+      "storybook_ready": true,
+      "zeroheight_url": "https://zeroheight.com/0b922d40b/p/48830f",
+      "record_file": null
+    },
+    {
+      "name": "Inline notification",
+      "id": "component-inline-notification",
+      "category": "Feedback",
+      "figma_ready": true,
+      "doc_ready": true,
+      "storybook_ready": true,
+      "zeroheight_url": "https://zeroheight.com/0b922d40b/p/5697b4",
+      "record_file": null
+    },
+    {
+      "name": "Link",
+      "id": "component-link",
+      "category": "Actions",
+      "figma_ready": true,
+      "doc_ready": true,
+      "storybook_ready": true,
+      "zeroheight_url": "https://zeroheight.com/0b922d40b/p/5959ae",
+      "record_file": null
+    },
+    {
+      "name": "List",
+      "id": "component-list",
+      "category": "Layout",
+      "figma_ready": true,
+      "doc_ready": true,
+      "storybook_ready": true,
+      "zeroheight_url": "https://zeroheight.com/0b922d40b/p/37109e",
+      "record_file": "list.component.json"
+    },
+    {
+      "name": "Main menu",
+      "id": "component-main-menu",
+      "category": "Navigation",
+      "figma_ready": true,
+      "doc_ready": true,
+      "storybook_ready": true,
+      "zeroheight_url": "https://zeroheight.com/0b922d40b/p/813a83",
+      "record_file": null
+    },
+    {
+      "name": "Media gallery",
+      "id": "component-media-gallery",
+      "category": "Media",
+      "figma_ready": true,
+      "doc_ready": true,
+      "storybook_ready": true,
+      "zeroheight_url": "https://zeroheight.com/0b922d40b/p/637680",
+      "record_file": null
+    },
+    {
+      "name": "Media tile",
+      "id": "component-media-tile",
+      "category": "Media",
+      "figma_ready": true,
+      "doc_ready": true,
+      "storybook_ready": true,
+      "zeroheight_url": "https://zeroheight.com/0b922d40b/p/35ddbc",
+      "record_file": "media-tile.component.json"
+    },
+    {
+      "name": "Modal",
+      "id": "component-modal",
+      "category": "Overlays",
+      "figma_ready": true,
+      "doc_ready": true,
+      "storybook_ready": true,
+      "zeroheight_url": "https://zeroheight.com/0b922d40b/p/51c11c",
+      "record_file": null
+    },
+    {
+      "name": "Notification badge",
+      "id": "component-notification-badge",
+      "category": "Display",
+      "figma_ready": true,
+      "doc_ready": true,
+      "storybook_ready": true,
+      "zeroheight_url": "https://zeroheight.com/0b922d40b/p/561fe5",
+      "record_file": null
+    },
+    {
+      "name": "Notification menu",
+      "id": "component-notification-menu",
+      "category": "Navigation",
+      "figma_ready": true,
+      "doc_ready": true,
+      "storybook_ready": true,
+      "zeroheight_url": "https://zeroheight.com/0b922d40b/p/697f1e",
+      "record_file": null
+    },
+    {
+      "name": "Option list",
+      "id": "component-option-list",
+      "category": "Navigation",
+      "figma_ready": true,
+      "doc_ready": true,
+      "storybook_ready": true,
+      "zeroheight_url": "https://zeroheight.com/0b922d40b/p/08a681",
+      "record_file": "option-list.component.json"
+    },
+    {
+      "name": "Page header",
+      "id": "component-page-header",
+      "category": "Layout",
+      "figma_ready": true,
+      "doc_ready": true,
+      "storybook_ready": true,
+      "zeroheight_url": "https://zeroheight.com/0b922d40b/p/788503",
+      "record_file": "page-header.component.json"
+    },
+    {
+      "name": "Popover",
+      "id": "component-popover",
+      "category": "Overlays",
+      "figma_ready": true,
+      "doc_ready": true,
+      "storybook_ready": true,
+      "zeroheight_url": "https://zeroheight.com/0b922d40b/p/257994",
+      "record_file": null
+    },
+    {
+      "name": "Password field",
+      "id": "component-password-field",
+      "category": "Forms",
+      "figma_ready": true,
+      "doc_ready": true,
+      "storybook_ready": true,
+      "zeroheight_url": "https://zeroheight.com/0b922d40b/p/15fc33",
+      "record_file": null
+    },
+    {
+      "name": "Progress bar",
+      "id": "component-progress-bar",
+      "category": "Display",
+      "figma_ready": true,
+      "doc_ready": true,
+      "storybook_ready": true,
+      "zeroheight_url": "https://zeroheight.com/0b922d40b/p/64b377",
+      "record_file": null
+    },
+    {
+      "name": "Progress circle",
+      "id": "component-progress-circle",
+      "category": "Display",
+      "figma_ready": true,
+      "doc_ready": true,
+      "storybook_ready": true,
+      "zeroheight_url": "https://zeroheight.com/0b922d40b/p/05d95e",
+      "record_file": null
+    },
+    {
+      "name": "Progress circle filled",
+      "id": "component-progress-circle-filled",
+      "category": "Display",
+      "figma_ready": true,
+      "doc_ready": true,
+      "storybook_ready": true,
+      "zeroheight_url": "https://zeroheight.com/0b922d40b/p/4022a4",
+      "record_file": null
+    },
+    {
+      "name": "Progress menu",
+      "id": "component-progress-menu",
+      "category": "Navigation",
+      "figma_ready": true,
+      "doc_ready": true,
+      "storybook_ready": true,
+      "zeroheight_url": "https://zeroheight.com/0b922d40b/v/0/p/32398b-progress-menu",
+      "record_file": null
+    },
+    {
+      "name": "Radio button",
+      "id": "component-radio-button",
+      "category": "Forms",
+      "figma_ready": true,
+      "doc_ready": true,
+      "storybook_ready": true,
+      "zeroheight_url": "https://zeroheight.com/0b922d40b/p/973639",
+      "record_file": "radio-button.component.json"
+    },
+    {
+      "name": "Search",
+      "id": "component-search",
+      "category": "Forms",
+      "figma_ready": true,
+      "doc_ready": true,
+      "storybook_ready": true,
+      "zeroheight_url": "https://zeroheight.com/0b922d40b/p/36c5ff",
+      "record_file": "search.component.json"
+    },
+    {
+      "name": "Segmented control",
+      "id": "component-segmented-control",
+      "category": "Forms",
+      "figma_ready": true,
+      "doc_ready": true,
+      "storybook_ready": true,
+      "zeroheight_url": "https://zeroheight.com/0b922d40b/p/53abd9",
+      "record_file": null
+    },
+    {
+      "name": "Show more",
+      "id": "component-show-more",
+      "category": "Layout",
+      "figma_ready": true,
+      "doc_ready": true,
+      "storybook_ready": true,
+      "zeroheight_url": "https://zeroheight.com/0b922d40b/p/8653c7",
+      "record_file": null
+    },
+    {
+      "name": "Side sheet",
+      "id": "component-side-sheet",
+      "category": "Overlays",
+      "figma_ready": true,
+      "doc_ready": true,
+      "storybook_ready": true,
+      "zeroheight_url": "https://zeroheight.com/0b922d40b/p/7675c3",
+      "record_file": null
+    },
+    {
+      "name": "Skeleton",
+      "id": "component-skeleton",
+      "category": "Display",
+      "figma_ready": true,
+      "doc_ready": true,
+      "storybook_ready": true,
+      "zeroheight_url": "https://zeroheight.com/0b922d40b/p/953907",
+      "record_file": null
+    },
+    {
+      "name": "Slider",
+      "id": "component-slider",
+      "category": "Forms",
+      "figma_ready": true,
+      "doc_ready": true,
+      "storybook_ready": true,
+      "zeroheight_url": "https://zeroheight.com/0b922d40b/p/2508f3",
+      "record_file": "slider.component.json"
+    },
+    {
+      "name": "Snackbar",
+      "id": "component-snackbar",
+      "category": "Feedback",
+      "figma_ready": true,
+      "doc_ready": true,
+      "storybook_ready": true,
+      "zeroheight_url": "https://zeroheight.com/0b922d40b/p/875abc",
+      "record_file": null
+    },
+    {
+      "name": "Switch",
+      "id": "component-switch",
+      "category": "Forms",
+      "figma_ready": true,
+      "doc_ready": true,
+      "storybook_ready": true,
+      "zeroheight_url": "https://zeroheight.com/0b922d40b/p/7699c7",
+      "record_file": "switch.component.json"
+    },
+    {
+      "name": "Tab",
+      "id": "component-tab",
+      "category": "Navigation",
+      "figma_ready": true,
+      "doc_ready": true,
+      "storybook_ready": true,
+      "zeroheight_url": "https://zeroheight.com/0b922d40b/p/05c87c",
+      "record_file": "tab.component.json"
+    },
+    {
+      "name": "Table",
+      "id": "component-table",
+      "category": "Layout",
+      "figma_ready": true,
+      "doc_ready": true,
+      "storybook_ready": true,
+      "zeroheight_url": "https://zeroheight.com/0b922d40b/p/64dd20",
+      "record_file": null
+    },
+    {
+      "name": "Tag",
+      "id": "component-tag",
+      "category": "Display",
+      "figma_ready": true,
+      "doc_ready": true,
+      "storybook_ready": true,
+      "zeroheight_url": "https://zeroheight.com/0b922d40b/p/40b4d0",
+      "record_file": null
+    },
+    {
+      "name": "Text field",
+      "id": "component-text-field",
+      "category": "Forms",
+      "figma_ready": true,
+      "doc_ready": true,
+      "storybook_ready": true,
+      "zeroheight_url": "https://zeroheight.com/0b922d40b/p/523b03",
+      "record_file": "text-field.component.json"
+    },
+    {
+      "name": "Text area",
+      "id": "component-text-area",
+      "category": "Forms",
+      "figma_ready": true,
+      "doc_ready": true,
+      "storybook_ready": true,
+      "zeroheight_url": "https://zeroheight.com/0b922d40b/p/87c9c9",
+      "record_file": null
+    },
+    {
+      "name": "Timeline stepper",
+      "id": "component-timeline-stepper",
+      "category": "Navigation",
+      "figma_ready": true,
+      "doc_ready": true,
+      "storybook_ready": true,
+      "zeroheight_url": "https://zeroheight.com/0b922d40b/v/0/p/969ad9-timeline-stepper",
+      "record_file": null
+    },
+    {
+      "name": "Toast",
+      "id": "component-toast",
+      "category": "Feedback",
+      "figma_ready": true,
+      "doc_ready": true,
+      "storybook_ready": true,
+      "zeroheight_url": "https://zeroheight.com/0b922d40b/p/25384c",
+      "record_file": "toast.component.json"
+    },
+    {
+      "name": "Tooltip",
+      "id": "component-tooltip",
+      "category": "Display",
+      "figma_ready": true,
+      "doc_ready": true,
+      "storybook_ready": true,
+      "zeroheight_url": "https://zeroheight.com/0b922d40b/p/696f5b",
+      "record_file": null
+    },
+    {
+      "name": "Toggle button",
+      "id": "component-toggle-button",
+      "category": "Actions",
+      "figma_ready": true,
+      "doc_ready": true,
+      "storybook_ready": true,
+      "zeroheight_url": "https://zeroheight.com/0b922d40b/p/612cbd",
+      "record_file": null
+    },
+    {
+      "name": "Top bar",
+      "id": "component-top-bar",
+      "category": "Navigation",
+      "figma_ready": true,
+      "doc_ready": true,
+      "storybook_ready": true,
+      "zeroheight_url": "https://zeroheight.com/0b922d40b/p/4274c7",
+      "record_file": "top-bar.component.json"
+    },
+    {
+      "name": "Universal action bar",
+      "id": "component-universal-action-bar",
+      "category": "Layout",
+      "figma_ready": true,
+      "doc_ready": true,
+      "storybook_ready": false,
+      "zeroheight_url": "https://zeroheight.com/0b922d40b/p/983afa",
+      "record_file": null,
+      "agent_flag": "storybook_ready=false — no code reference. Do not auto-generate."
+    },
+    {
+      "name": "User menu",
+      "id": "component-user-menu",
+      "category": "Navigation",
+      "figma_ready": true,
+      "doc_ready": true,
+      "storybook_ready": true,
+      "zeroheight_url": "https://zeroheight.com/0b922d40b/p/393e4f",
+      "record_file": null
+    },
+    {
+      "name": "Wizard",
+      "id": "component-wizard",
+      "category": "Navigation",
+      "figma_ready": true,
+      "doc_ready": true,
+      "storybook_ready": true,
+      "zeroheight_url": "https://zeroheight.com/0b922d40b/p/908e33",
+      "record_file": null
+    }
+  ],
+  "by_category": {
+    "Actions":     ["Button", "AI button", "Info button", "Link", "Toggle button"],
+    "Display":     ["Avatar", "Battery indicator", "Color dot", "Notification badge", "Progress bar", "Progress circle", "Progress circle filled", "Skeleton", "Tag", "Tooltip"],
+    "Feedback":    ["Banner", "Empty state", "Inline notification", "Snackbar", "Toast"],
+    "Forms":       ["Checkbox", "Date input", "Dropdown", "Dropzone overlay", "Form", "Password field", "Radio button", "Search", "Segmented control", "Slider", "Switch", "Text area", "Text field"],
+    "Identity":    ["Avatar"],
+    "Layout":      ["Accordion", "AI side panel", "Card", "Container", "Divider", "List", "Media gallery", "Page header", "Show more", "Table", "Universal action bar"],
+    "Media":       ["Media gallery", "Media tile"],
+    "Navigation":  ["Main menu", "Notification menu", "Option list", "Progress menu", "Tab", "Timeline stepper", "Top bar", "User menu", "Wizard"],
+    "Overlays":    ["Alert dialog", "Hero modal", "Info modal", "Modal", "Popover", "Side sheet"],
+    "Specialised": ["Dental chart"]
+  },
+  "record_coverage": {
+    "total_records_generated": 19,
+    "records": [
+      "accordion.component.json",
+      "avatar.component.json",
+      "banner.component.json",
+      "button.component.json",
+      "checkbox.component.json",
+      "empty-state.component.json",
+      "hero-modal.component.json",
+      "list.component.json",
+      "media-tile.component.json",
+      "option-list.component.json",
+      "page-header.component.json",
+      "radio-button.component.json",
+      "search.component.json",
+      "slider.component.json",
+      "switch.component.json",
+      "tab.component.json",
+      "text-field.component.json",
+      "toast.component.json",
+      "top-bar.component.json"
+    ],
+    "remaining": 36
+  }
+}

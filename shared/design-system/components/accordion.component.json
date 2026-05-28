@@ -1,0 +1,75 @@
+{
+  "id": "component-accordion",
+  "name": "Accordion",
+  "canonical_name": "Accordion",
+  "aliases": ["expandable section", "collapsible panel", "disclosure"],
+  "category": "Layout",
+  "version": "0.33.0",
+  "sources": {
+    "figma": true,
+    "zeroheight_url": "https://zeroheight.com/0b922d40b/p/435154",
+    "storybook": true,
+    "storybook_url": "https://storybook-coreui-d2-euw3.d.dscore.com/#/Components/Accordion",
+    "doc_ready": true,
+    "storybook_ready": true
+  },
+  "variants": [
+    { "name": "base", "description": "Default spacing and type scale. Use for most pages." },
+    { "name": "compact", "description": "Tighter spacing and smaller type. Use for dense layouts: side sheets, modals." }
+  ],
+  "sizes": ["base", "compact"],
+  "states": ["collapsed", "expanded", "skeleton"],
+  "props": {
+    "size": { "type": "enum", "values": ["base", "compact"], "default": "base" },
+    "allow_multiple_open": { "type": "boolean", "default": false },
+    "wrapped_in_container": { "type": "boolean", "default": false, "note": "Use only when accordion is stand-alone on a page, not inside side sheet, modal, etc." },
+    "items": { "type": "AccordionItem[]", "required": true },
+    "is_skeleton": { "type": "boolean", "default": false }
+  },
+  "item_schema": {
+    "headline": { "type": "string", "required": true, "note": "Sentence case, short and specific" },
+    "subline": { "type": "string | null", "default": null, "note": "Optional context. Short and concise." },
+    "body": { "type": "ReactNode", "required": true },
+    "actions": { "type": "Action[]", "default": [], "note": "Maximum two actions per item" },
+    "default_open": { "type": "boolean", "default": false }
+  },
+  "tokens": {
+    "typography": {
+      "headline_base": { "token": "Text.textBaseStrong", "size": "16px", "weight": "SemiBold" },
+      "headline_compact": { "token": "Text.textSmStrong", "size": "14px", "weight": "SemiBold" },
+      "subline": { "token": "Text.textSm", "size": "14px", "weight": "Regular" },
+      "body": { "token": "Text.textBase", "size": "16px", "weight": "Regular" }
+    },
+    "spacing": {
+      "between_headline_content": { "token": "Spacing.Component.M", "value": "16px" }
+    },
+    "colors": {
+      "divider": { "token": "Border.Standard", "light": "#D4D4D4", "dark": "#3A3A3A" },
+      "chevron": { "token": "Icon.Standard", "light": "#1A1A1A", "dark": "#F0F0F0" },
+      "skeleton": { "token": "Surface.Skeleton", "light": "#E8E8E8", "dark": "#2E2E2E" }
+    },
+    "radius": { "token": "Border.Radius.Large", "value": "16px", "note": "Applied when wrapped in container" }
+  },
+  "usage_rules": [
+    { "rule": "Never nest accordions", "severity": "error", "detail": "Do not place an accordion inside another accordion. Use separate accordions side by side instead." },
+    { "rule": "Container wrapping context rule", "severity": "error", "detail": "Use wrapped_in_container=true only when the accordion stands alone on a page. When inside a side sheet, modal, or other container, do not wrap in container." },
+    { "rule": "Use compact size for dense layouts", "severity": "warning", "detail": "Use compact variant inside side sheets and modal dialogs. Do not use base size in dense contexts." },
+    { "rule": "Do not confuse size with responsive Small mode", "severity": "warning", "detail": "The size variants (base/compact) are not the same as responsive Small mode. Small mode is only for responsive layout S." },
+    { "rule": "Maximum two actions per item", "severity": "warning", "detail": "Each accordion item supports up to two optional actions." },
+    { "rule": "Headlines in sentence case", "severity": "error", "detail": "Accordion headline and subline text must use sentence case." }
+  ],
+  "accessibility": {
+    "role": "region / button",
+    "keyboard": ["Enter / Space to toggle", "Tab to navigate between items"],
+    "aria_expanded": true,
+    "aria_controls": "Points to body panel id"
+  },
+  "agent_instructions": {
+    "confidence_blockers": [
+      "If ticket nests an accordion inside another accordion, flag as usage_rule violation.",
+      "If ticket uses base size inside a modal or side sheet, suggest compact instead.",
+      "If ticket places accordion inside a wrapping container while already inside a modal/side sheet, flag."
+    ]
+  },
+  "embedding_text": "Accordion component. Expandable collapsible sections for grouping related content. Sizes: base default, compact for modals side sheets dense layouts. Never nest accordions. Container wrapping only when stand-alone on page. Up to two actions per item. Chevron indicates expanded collapsed state. Skeleton loading state."
+}

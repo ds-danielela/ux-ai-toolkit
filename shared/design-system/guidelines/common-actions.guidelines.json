@@ -1,0 +1,97 @@
+{
+  "id": "guideline-common-actions",
+  "type": "interaction_pattern",
+  "name": "Common actions",
+  "description": "Rules for action placement, emphasis, labelling and disabled state across all components",
+  "version": "0.33.0",
+
+  "action_emphasis": [
+    { "emphasis": "high",      "component": "Button", "variant": "primary",           "rule": "Use a single primary button per view/context. All others must be secondary or lower." },
+    { "emphasis": "medium",    "component": "Button", "variant": "secondary",         "rule": "Standard supporting actions." },
+    { "emphasis": "low",       "component": "Button", "variant": "tertiary",          "rule": "Low-emphasis actions." },
+    { "emphasis": "very_low",  "component": "Button", "variant": "tertiary_icon",     "rule": "Close buttons, overflow actions. Always tertiary icon button with close icon." }
+  ],
+
+  "action_vocabulary": [
+    { "label": "Add",      "usage": "Inserting an item to an existing list or set" },
+    { "label": "Back",     "usage": "Moving from one step to the previous in a sequence or wizard" },
+    { "label": "Cancel",   "usage": "Stops a current action or closes a component" },
+    { "label": "Decline",  "usage": "Stops a current action or closes a component" },
+    { "label": "Clear",    "usage": "Removes information from a field or selection" },
+    { "label": "Close",    "usage": "Dismisses or terminates a modal, menu, or flow" },
+    { "label": "Copy",     "usage": "Creates an identical instance" },
+    { "label": "Delete",   "usage": "Permanently removes or destroys an object" },
+    { "label": "Edit",     "usage": "Creates a state where data or values can be changed" },
+    { "label": "Continue", "usage": "Moving from one step to the next in a sequence or wizard" },
+    { "label": "Refresh",  "usage": "Reloads data when displayed view is out of sync with source" },
+    { "label": "Remove",   "usage": "Clearing from a list. Recoverable. Contrast with Delete." },
+    { "label": "Reset",    "usage": "Reverts to the latest saved data" }
+  ],
+
+  "placement_rules": [
+    {
+      "context": "page_header",
+      "placement": "top right",
+      "sequence_right_to_left": ["primary", "secondary", "tertiary"],
+      "max_buttons": 3,
+      "note": "Actions relating to the entire view. See Page header component."
+    },
+    {
+      "context": "universal_action_bar",
+      "placement": "top right",
+      "sequence_right_to_left": ["primary", "secondary", "tertiary"],
+      "note": "Actions relating to a table or media gallery."
+    },
+    {
+      "context": "cards_containers_notifications",
+      "placement": "bottom left",
+      "note": "Common actions in cards, containers, toasts placed bottom left."
+    },
+    {
+      "context": "modal_dialog",
+      "placement": "bottom right",
+      "sequence_right_to_left": ["primary", "secondary", "tertiary"]
+    },
+    {
+      "context": "wizard",
+      "placement_next": "bottom right",
+      "placement_back": "bottom left",
+      "note": "Next/Finish on right. Back on left. Never both on same side."
+    },
+    {
+      "context": "closing_action",
+      "placement": "top right",
+      "component": "Button",
+      "variant": "tertiary_icon",
+      "icon": "close",
+      "note": "Always tertiary icon button with close icon. No exceptions."
+    },
+    {
+      "context": "inline_list_table_row",
+      "placement": "right of item",
+      "component": "Button",
+      "variant": "tertiary_icon",
+      "note": "Multiple inline actions: combine into icon button with option list."
+    }
+  ],
+
+  "disabled_state_rules": [
+    {
+      "rule": "Do not disable the primary button when form is incomplete",
+      "severity": "error",
+      "detail": "Do not use the disabled state of the primary button even if data is missing. Users may not understand why. Instead show an Inline notification explaining what needs to be done."
+    },
+    {
+      "rule": "Contextual actions: show only when relevant",
+      "severity": "warning",
+      "detail": "If button state depends on a selection (e.g. in universal action bar), only show active buttons initially. Reveal selection-specific actions after user selects."
+    }
+  ],
+
+  "general_rules": [
+    { "rule": "One primary button per context", "severity": "error", "detail": "Never show multiple primary buttons on the same view, page, or dialog." },
+    { "rule": "Group related actions", "severity": "warning", "detail": "Group related actions together. Arrange by importance right to left." },
+    { "rule": "Do not centre-align secondary or semantic actions", "severity": "error", "detail": "Actions must be left- or right-aligned per placement rules. Never centred." },
+    { "rule": "Button sequence right to left: primary → secondary → tertiary", "severity": "error", "detail": "In all top-placement contexts, primary is rightmost, tertiary leftmost." }
+  ]
+}

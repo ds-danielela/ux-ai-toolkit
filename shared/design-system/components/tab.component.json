@@ -1,0 +1,70 @@
+{
+  "id": "component-tab",
+  "name": "Tab",
+  "canonical_name": "Tab",
+  "aliases": ["tabs", "tab group", "tab bar", "navigation tabs", "vertical tabs"],
+  "category": "Navigation",
+  "version": "0.33.0",
+  "sources": {
+    "figma": true,
+    "zeroheight_url": "https://zeroheight.com/0b922d40b/p/05c87c",
+    "storybook": true,
+    "storybook_url": "https://storybook-coreui-d2-euw3.d.dscore.com/#/Components/Tab",
+    "doc_ready": true,
+    "storybook_ready": true
+  },
+  "variants": [
+    { "name": "horizontal", "description": "Fixed height, variable width stretching to parent. Placed above the view it controls." },
+    { "name": "vertical", "description": "Fixed width, variable height stretching to parent. Placed to the left of the view it controls." }
+  ],
+  "states": ["default", "selected", "hovered", "focused", "disabled", "overflow"],
+  "props": {
+    "variant": { "type": "enum", "values": ["horizontal", "vertical"], "default": "horizontal" },
+    "tabs": { "type": "Tab[]", "required": true },
+    "default_selected": { "type": "string", "default": "first tab", "note": "Usually the first tab is preselected" },
+    "on_change": { "type": "function", "required": true }
+  },
+  "tab_item_schema": {
+    "id": { "type": "string", "required": true },
+    "label": { "type": "string", "required": true, "note": "Always sentence case. Never truncated." },
+    "icon": { "type": "icon | null", "default": null, "note": "If any tab has an icon, all tabs must have one." },
+    "icon_color": { "type": "string | null", "default": null, "note": "Optional semantic color override, e.g. to indicate status" },
+    "disabled": { "type": "boolean", "default": false }
+  },
+  "tokens": {
+    "colors": {
+      "selected_indicator": { "token": "Surface.Interactive.Standard", "light": "#1F6FEB", "dark": "#1F6FEB" },
+      "selected_text": { "token": "Text.Standard", "light": "#1A1A1A", "dark": "#F0F0F0" },
+      "unselected_text": { "token": "Text.Subdued", "light": "#6E6E6E", "dark": "#9A9A9A" },
+      "hovered_surface": { "token": "Surface.Hovered", "light": "#EFEFEF", "dark": "#2E2E2E" },
+      "focus_ring": { "token": "Border.Focused", "light": "#1F6FEB", "dark": "#5599F5" },
+      "divider": { "token": "Border.Standard", "light": "#D4D4D4", "dark": "#3A3A3A" }
+    },
+    "border_width": {
+      "focus": { "token": "Border.Width.Focus", "value": "2px" },
+      "interactive": { "token": "Border.Width.Interactive", "value": "2px", "note": "Selected indicator line width" }
+    }
+  },
+  "usage_rules": [
+    { "rule": "Icons must be consistent across all tabs", "severity": "error", "detail": "Do not mix tabs with and without icons in the same tab group. Either all tabs have icons or none do." },
+    { "rule": "Never truncate tab labels", "severity": "error", "detail": "Tab labels must never be truncated. If space is insufficient the tab group becomes scrollable." },
+    { "rule": "Labels in sentence case", "severity": "error", "detail": "All tab labels must use sentence case." },
+    { "rule": "Only one tab selected at a time", "severity": "error", "detail": "Only one tab can be active/selected. The first tab is preselected by default." },
+    { "rule": "Horizontal tabs placed above their view", "severity": "error", "detail": "Place horizontal tabs above the content they control." },
+    { "rule": "Vertical tabs placed to the left", "severity": "error", "detail": "Place vertical tabs to the left of the content they control." },
+    { "rule": "Limit tab count to avoid overflow", "severity": "warning", "detail": "Try to limit the number of tabs. If overflow occurs the tab group is scrollable with fade gradient and chevron navigation." }
+  ],
+  "accessibility": {
+    "role": "tablist",
+    "tab_role": "tab",
+    "panel_role": "tabpanel",
+    "keyboard": ["ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown", "Home", "End"]
+  },
+  "agent_instructions": {
+    "confidence_blockers": [
+      "If ticket mixes tabs with and without icons, flag as usage_rule violation.",
+      "If ticket requests truncated tab labels, flag — make group scrollable instead."
+    ]
+  },
+  "embedding_text": "Tab component. Navigation tabs organize page content into different views. Horizontal tabs above content, vertical tabs left of content. One selected at a time first tab preselected. Icons consistent all or none. Labels sentence case never truncated scrollable on overflow. Selected indicator line. Keyboard navigable."
+}

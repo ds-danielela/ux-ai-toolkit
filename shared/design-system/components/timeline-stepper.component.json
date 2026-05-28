@@ -1,0 +1,104 @@
+{
+  "id": "component-timeline-stepper",
+  "name": "Timeline stepper",
+  "canonical_name": "Timeline stepper",
+  "aliases": ["stepper", "wizard stepper", "progress stepper", "step indicator", "wizard steps"],
+  "category": "Navigation",
+  "version": "0.33.0",
+  "sources": {
+    "figma": true,
+    "zeroheight_url": "https://zeroheight.com/0b922d40b/v/0/p/969ad9-timeline-stepper",
+    "storybook": true,
+    "storybook_url": "https://storybook-coreui-d2-euw3.d.dscore.com/#/Components/Timeline%20Stepper",
+    "doc_ready": true,
+    "storybook_ready": true
+  },
+  "variants": [
+    { "name": "horizontal", "description": "Steps arranged left to right. Default. Use for most wizard and onboarding flows." },
+    { "name": "vertical", "description": "Steps stacked top to bottom. Use when step content or descriptions are displayed alongside each step." }
+  ],
+  "sizes": ["base", "compact"],
+  "states": ["upcoming", "active", "completed", "error", "skeleton"],
+  "step_states": {
+    "upcoming": "Step has not yet been reached. Indicator shows step number.",
+    "active": "The step the user is currently on. Indicator is visually highlighted.",
+    "completed": "Step has been finished. Indicator shows a check icon.",
+    "error": "Step contains an error requiring resolution. Indicator shows an error icon."
+  },
+  "props": {
+    "orientation": { "type": "enum", "values": ["horizontal", "vertical"], "default": "horizontal" },
+    "size": { "type": "enum", "values": ["base", "compact"], "default": "base" },
+    "active_step": { "type": "number", "required": true, "note": "Zero-based index of the currently active step." },
+    "steps": { "type": "StepItem[]", "required": true },
+    "is_skeleton": { "type": "boolean", "default": false }
+  },
+  "item_schema": {
+    "label": { "type": "string", "required": true, "note": "Sentence case. Short and specific." },
+    "sublabel": { "type": "string | null", "default": null, "note": "Optional short description. Only visible in vertical orientation." },
+    "state": { "type": "enum", "values": ["upcoming", "active", "completed", "error"], "required": true },
+    "disabled": { "type": "boolean", "default": false, "note": "Step cannot be navigated to or clicked." }
+  },
+  "tokens": {
+    "typography": {
+      "label_base": { "token": "Text.textSm", "size": "14px", "weight": "Regular" },
+      "label_active_base": { "token": "Text.textSmStrong", "size": "14px", "weight": "SemiBold" },
+      "label_compact": { "token": "Text.textXs", "size": "12px", "weight": "Regular" },
+      "label_active_compact": { "token": "Text.textXsStrong", "size": "12px", "weight": "SemiBold" },
+      "sublabel": { "token": "Text.textXs", "size": "12px", "weight": "Regular" }
+    },
+    "spacing": {
+      "step_gap_horizontal": { "token": "Spacing.Layout.M", "value": "24px" },
+      "step_gap_vertical": { "token": "Spacing.Layout.S", "value": "16px" },
+      "label_to_indicator": { "token": "Spacing.Component.XS", "value": "8px" }
+    },
+    "colors": {
+      "indicator_upcoming_bg": { "token": "Surface.Standard", "light": "#FFFFFF", "dark": "#2A2A2A" },
+      "indicator_upcoming_border": { "token": "Border.Standard", "light": "#D4D4D4", "dark": "#3A3A3A" },
+      "indicator_upcoming_label": { "token": "Text.Subtle", "light": "#737373", "dark": "#9A9A9A" },
+      "indicator_active_bg": { "token": "Surface.Interactive.Standard", "light": "#1F6FEB", "dark": "#1F6FEB" },
+      "indicator_active_icon": { "token": "Icon.On.Primary", "light": "#FFFFFF", "dark": "#FFFFFF" },
+      "indicator_completed_bg": { "token": "Surface.Interactive.Standard", "light": "#1F6FEB", "dark": "#1F6FEB" },
+      "indicator_completed_icon": { "token": "Icon.On.Primary", "light": "#FFFFFF", "dark": "#FFFFFF" },
+      "indicator_error_bg": { "token": "Surface.Critical", "light": "#D92B2B", "dark": "#FF6B6B" },
+      "indicator_error_icon": { "token": "Icon.On.Critical", "light": "#FFFFFF", "dark": "#FFFFFF" },
+      "connector_completed": { "token": "Surface.Interactive.Standard", "light": "#1F6FEB", "dark": "#1F6FEB" },
+      "connector_upcoming": { "token": "Border.Standard", "light": "#D4D4D4", "dark": "#3A3A3A" },
+      "label_active": { "token": "Text.Standard", "light": "#1A1A1A", "dark": "#F0F0F0" },
+      "label_upcoming": { "token": "Text.Subtle", "light": "#737373", "dark": "#9A9A9A" },
+      "label_completed": { "token": "Text.Subtle", "light": "#737373", "dark": "#9A9A9A" },
+      "label_error": { "token": "Text.Critical", "light": "#D92B2B", "dark": "#FF6B6B" },
+      "skeleton": { "token": "Surface.Skeleton", "light": "#E8E8E8", "dark": "#2E2E2E" }
+    },
+    "radius": {
+      "indicator": { "token": "Border.Radius.Full", "value": "50%", "note": "Circular step indicator" }
+    }
+  },
+  "usage_rules": [
+    { "rule": "Use for linear sequential flows only", "severity": "error", "detail": "The timeline stepper is designed for ordered, sequential multi-step processes. Do not use for non-sequential navigation or filtering between unrelated views — use tabs instead." },
+    { "rule": "Minimum two steps", "severity": "error", "detail": "A timeline stepper must have at least two steps. A single-step process does not require a stepper." },
+    { "rule": "Maximum recommended steps", "severity": "warning", "detail": "Avoid more than seven steps in horizontal orientation. If the process requires more steps, group related steps into sections or use vertical orientation." },
+    { "rule": "Sublabel only in vertical orientation", "severity": "error", "detail": "Step sublabels (descriptions) are only displayed in the vertical variant. Do not define sublabels for horizontal steppers." },
+    { "rule": "One active step at a time", "severity": "error", "detail": "Only one step may be in the active state at a time. active_step must always point to a single index." },
+    { "rule": "Error state requires inline notification", "severity": "warning", "detail": "When a step is in error state, display an inline notification within the step's content area explaining what needs to be resolved. The error state alone is not sufficient feedback." },
+    { "rule": "Labels in sentence case", "severity": "error", "detail": "All step labels and sublabels must use sentence case." },
+    { "rule": "Use compact size for dense layouts", "severity": "warning", "detail": "Use the compact variant inside side sheets or when space is constrained. Do not use base size in dense contexts." }
+  ],
+  "accessibility": {
+    "role": "navigation",
+    "aria_label": "Step progress indicator",
+    "step_role": "listitem",
+    "keyboard": ["Tab to navigate between interactive steps", "Enter or Space to activate a step"],
+    "aria_current": "page — applied to the active step",
+    "aria_disabled": "Set to true on disabled steps",
+    "note": "Completed and upcoming steps that are clickable must meet minimum touch target size of 44px."
+  },
+  "agent_instructions": {
+    "confidence_blockers": [
+      "If ticket uses horizontal orientation with sublabels, flag as usage_rule violation.",
+      "If ticket shows more than seven steps in horizontal orientation, flag and suggest grouping or switching to vertical.",
+      "If ticket has a step in error state without a paired inline notification, flag.",
+      "If ticket uses a single step, flag — a stepper is not appropriate."
+    ]
+  },
+  "embedding_text": "Timeline stepper component. Navigation progress indicator for sequential multi-step flows. Variants: horizontal left-to-right default, vertical stacked with sublabels. Step states: upcoming numbered, active highlighted current step, completed check icon, error critical icon. Sizes: base default, compact for dense layouts. One active step at a time. Min two steps. Max seven steps in horizontal. Sublabels vertical only. Error requires inline notification."
+}

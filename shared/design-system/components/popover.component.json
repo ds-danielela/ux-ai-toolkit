@@ -1,0 +1,79 @@
+{
+  "id": "component-popover",
+  "name": "Popover",
+  "canonical_name": "Popover",
+  "aliases": ["tooltip popover", "overlay panel", "feature callout", "contextual panel"],
+  "category": "Overlays",
+  "version": "0.33.0",
+  "sources": {
+    "figma": true,
+    "zeroheight_url": "https://zeroheight.com/0b922d40b/p/257994",
+    "storybook": true,
+    "storybook_url_non_modal": "https://storybook-coreui-d2-euw3.d.dscore.com/#/Components/Popover%20anchor%20(non%20modal)",
+    "storybook_url_modal": "https://storybook-coreui-d2-euw3.d.dscore.com/#/Components/Popover%20anchor%20(modal)",
+    "doc_ready": true,
+    "storybook_ready": true
+  },
+  "variants": [
+    {
+      "name": "non_modal",
+      "component_name": "DSPopoverAnchor",
+      "description": "Stays open when user interacts with background. Moves with anchor on scroll. Sticks to screen edge if anchor scrolls out of view.",
+      "close_behaviour": "Close button or re-clicking the trigger"
+    },
+    {
+      "name": "modal",
+      "component_name": "DSModalPopoverAnchor",
+      "description": "Closes when user clicks outside or scrolls the page.",
+      "close_behaviour": "Click outside, scroll, or close button"
+    }
+  ],
+  "positions": ["right", "left", "top", "bottom", "bottom-right corner (feature callout)"],
+  "props": {
+    "variant": { "type": "enum", "values": ["non_modal", "modal"], "required": true },
+    "position": { "type": "enum", "values": ["right", "left", "top", "bottom", "corner"], "default": "right" },
+    "headline": { "type": "string", "required": true, "note": "Short and specific. Sentence case." },
+    "body": { "type": "string | ReactNode", "required": true },
+    "show_nubbin": { "type": "boolean", "default": true, "note": "Arrow pointing to the trigger element" },
+    "show_close_button": { "type": "boolean", "default": false },
+    "actions": { "type": "Action[]", "default": [] },
+    "image": { "type": "ReactNode | null", "default": null },
+    "trigger": { "type": "ReactNode", "required": true, "note": "The UI element that triggers the popover" },
+    "open_on_load": { "type": "boolean", "default": false, "note": "For feature callouts shown on page load" }
+  },
+  "tokens": {
+    "sizing": { "width": "Fixed width", "height": "Depends on content" },
+    "radius": { "token": "Border.Radius.Large", "value": "16px" },
+    "colors": {
+      "surface": { "token": "Surface.Standard", "light": "#FFFFFF", "dark": "#242424" },
+      "border": { "token": "Border.Standard", "light": "#D4D4D4", "dark": "#3A3A3A" }
+    },
+    "elevation": "elevation3"
+  },
+  "scroll_behaviour": {
+    "modal": "Closes automatically when user scrolls or interacts with background",
+    "non_modal": "Stays open and moves with anchor. Sticks to screen edge if anchor scrolls out of view.",
+    "large_content": "Close button remains sticky at top. Content below scrolls."
+  },
+  "usage_rules": [
+    { "rule": "Only one popover at a time", "severity": "error", "detail": "Never show multiple popovers simultaneously." },
+    { "rule": "Do not use for critical information", "severity": "error", "detail": "Popovers are not for critical messages. Use Modal or a notification component (Banner, Toast) instead." },
+    { "rule": "Keep content concise", "severity": "warning", "detail": "Do not make the popover too large or overly descriptive. Keep headline and body clear and brief." },
+    { "rule": "Icon-only triggers need tooltips", "severity": "warning", "detail": "If the trigger is an icon-only button, ensure a tooltip is also present to explain the trigger itself." },
+    { "rule": "Correct variant for scroll context", "severity": "warning", "detail": "Use modal variant when the popover should dismiss on scroll. Use non-modal when it should follow the anchor." }
+  ],
+  "accessibility": {
+    "role": "dialog",
+    "aria_modal": "true for modal variant, false for non-modal",
+    "focus_trap": "modal variant only",
+    "close_on_escape": true
+  },
+  "agent_instructions": {
+    "confidence_blockers": [
+      "If ticket uses popover for a critical error or alert message, flag and suggest Modal or Banner.",
+      "If ticket requests multiple simultaneous popovers, flag.",
+      "If ticket does not specify modal vs non_modal variant, ask — scroll behaviour differs significantly."
+    ]
+  },
+  "embedding_text": "Popover component. Elevated contextual panel showing detailed information or feature callout. Two variants: non-modal follows anchor on scroll, modal closes on scroll or background click. Positions: right left top bottom corner. Has headline body nubbin close button actions image. One at a time. Not for critical messages. Fixed width content-dependent height."
+}

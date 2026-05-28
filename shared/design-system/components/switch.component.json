@@ -1,0 +1,66 @@
+{
+  "id": "component-switch",
+  "name": "Switch",
+  "canonical_name": "Switch",
+  "aliases": ["toggle", "on off toggle", "toggle switch", "activation control"],
+  "category": "Forms",
+  "version": "0.33.0",
+  "sources": {
+    "figma": true,
+    "zeroheight_url": "https://zeroheight.com/0b922d40b/p/7699c7",
+    "storybook": true,
+    "storybook_url": "https://storybook-coreui-d2-euw3.d.dscore.com/#/Components/Switch",
+    "doc_ready": true,
+    "storybook_ready": true
+  },
+  "states": ["off", "on", "disabled_off", "disabled_on", "focused"],
+  "props": {
+    "label": { "type": "string", "required": true, "note": "Sentence case. Do not include on/off in label text." },
+    "sublabel": { "type": "string | null", "default": null },
+    "checked": { "type": "boolean", "default": false },
+    "disabled": { "type": "boolean", "default": false },
+    "on_change": { "type": "function", "required": true }
+  },
+  "fixed_dimensions": { "width": "40px", "height": "24px" },
+  "tokens": {
+    "colors": {
+      "on": { "token": "Surface.Interactive.Standard", "light": "#1F6FEB", "dark": "#1F6FEB" },
+      "on_hovered": { "token": "Surface.Interactive.Hovered", "light": "#1A64D6", "dark": "#3D84F0" },
+      "on_pressed": { "token": "Surface.Interactive.Pressed", "light": "#1558C0", "dark": "#5599F5" },
+      "on_disabled": { "token": "Surface.Interactive.Disabled", "light": "#A8C8F8", "dark": "#1A3A6B" },
+      "off": { "token": "Surface.Neutral.Standard", "light": "#6E6E6E", "dark": "#6E6E6E" },
+      "off_hovered": { "token": "Surface.Neutral.Hovered", "light": "#5E5E5E", "dark": "#7E7E7E" },
+      "thumb": { "token": "Surface.Standard", "light": "#FFFFFF", "dark": "#FFFFFF" },
+      "focus_ring": { "token": "Border.Focused", "light": "#1F6FEB", "dark": "#5599F5" }
+    },
+    "border_width": {
+      "focus": { "token": "Border.Width.Focus", "value": "2px" }
+    }
+  },
+  "decision_guide": {
+    "switch_vs_checkbox": "Switch: activation (turning a feature on or off). Checkbox: selection (choosing items from a list, table rows). Single binary yes/no with obvious meaning: use checkbox.",
+    "switch_vs_checkbox_indeterminate": "Switch has no indeterminate state. For hierarchical/partial selection, always use Checkbox.",
+    "switch_group_size": "For small sets of independent on/off options, switches are appropriate. For larger sets or related grouped options, use Checkboxes."
+  },
+  "usage_rules": [
+    { "rule": "Do not include on/off in label", "severity": "error", "detail": "The switch itself communicates the on/off state. Do not add on, off, enabled, disabled to the label." },
+    { "rule": "Switch for activation not selection", "severity": "error", "detail": "Use switch only to turn an option on or off. For selecting from a list, use Checkbox." },
+    { "rule": "No indeterminate state", "severity": "error", "detail": "Switch does not support indeterminate/tri-state. If indeterminate is needed, use Checkbox." },
+    { "rule": "Use for small sets of independent options", "severity": "warning", "detail": "For large sets or related options, use Checkboxes instead of Switches." },
+    { "rule": "Labels in sentence case", "severity": "error", "detail": "All switch labels must use sentence case." }
+  ],
+  "accessibility": {
+    "role": "switch",
+    "keyboard": ["Space to toggle"],
+    "aria_checked": "true | false",
+    "label_association": "label must be associated programmatically"
+  },
+  "agent_instructions": {
+    "confidence_blockers": [
+      "If label includes the words on, off, enabled, or disabled, flag as usage_rule violation.",
+      "If ticket uses switch for item selection from a list, flag and suggest Checkbox.",
+      "If ticket requires indeterminate state, flag — must use Checkbox instead."
+    ]
+  },
+  "embedding_text": "Switch toggle component. Activation control on off toggle. Fixed 40x24px. No indeterminate state. Label must not include on or off. Use for activation turning feature on off. Use Checkbox for selection from a list or indeterminate state. Independent non-exclusive options. Sentence case."
+}

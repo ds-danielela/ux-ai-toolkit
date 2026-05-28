@@ -1,0 +1,18 @@
+# Work product — local only, never pushed to GitHub
+ux-review-agent/inbox/*
+ux-review-agent/outputs/*
+ux-review-agent/archive/*
+
+# Keep the folders themselves (empty placeholder)
+!ux-review-agent/inbox/.gitkeep
+!ux-review-agent/outputs/.gitkeep
+!ux-review-agent/archive/.gitkeep
+
+# Future agents — same pattern
+# content-agent/inbox/*
+# content-agent/outputs/*
+# content-agent/archive/*
+
+# OS
+.DS_Store
+Thumbs.db

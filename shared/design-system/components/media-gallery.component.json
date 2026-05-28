@@ -1,0 +1,64 @@
+{
+  "id": "component-media-gallery",
+  "name": "Media gallery",
+  "canonical_name": "Media gallery",
+  "aliases": ["image gallery", "photo grid", "media grid", "patient images gallery"],
+  "category": "Media",
+  "version": "0.33.0",
+  "sources": {
+    "figma": true,
+    "zeroheight_url": "https://zeroheight.com/0b922d40b/p/637680",
+    "storybook": true,
+    "storybook_url": "https://storybook-coreui-d2-euw3.d.dscore.com/#/Components/Media%20Tile%20Sliver%20Grid",
+    "doc_ready": true,
+    "storybook_ready": true
+  },
+  "props": {
+    "sections": { "type": "GallerySection[]", "required": true, "note": "One or more sections, each with optional headline and media tiles" },
+    "selection_mode": { "type": "boolean", "default": false, "note": "Activated by checking a tile checkbox. Changes click behaviour from open to select." },
+    "is_skeleton": { "type": "boolean", "default": false }
+  },
+  "section_schema": {
+    "headline": { "type": "string | null", "default": null, "note": "Reflects the grouping criterion e.g. date, media type" },
+    "tiles": { "type": "MediaTile[]", "required": true }
+  },
+  "layout": {
+    "width": "Stretches to parent container width",
+    "gutter": "Fixed spacing between tiles",
+    "tile_width": "Adjusts dynamically to available space",
+    "columns_584_to_1200px": "4 columns, evenly divided",
+    "columns_below_584px": "Minimum tile width 128px — columns calculated from available width",
+    "columns_above_1200px": "Minimum tile width 282px — columns calculated from available width",
+    "example": "400px wide → 2 tiles. 432px → 3 tiles (3×128px + 2×24px gutter)"
+  },
+  "selection_mode_behaviour": {
+    "default_click": "Opens media preview or detail view",
+    "activation": "Ticking any tile checkbox activates selection mode for all tiles",
+    "selection_click": "In selection mode, clicking the whole tile selects/deselects it",
+    "action_bar": "Universal action bar actions are replaced by selection-specific actions"
+  },
+  "tokens": {
+    "spacing": {
+      "gutter": { "token": "Spacing.Layout.M", "value": "24px", "note": "Fixed gap between tiles" }
+    },
+    "colors": {
+      "skeleton": { "token": "Surface.Skeleton", "light": "#E8E8E8", "dark": "#2E2E2E" }
+    }
+  },
+  "usage_rules": [
+    { "rule": "Only for graphical objects", "severity": "error", "detail": "Use media gallery only for collections of graphical objects such as patient images. Not for action lists or non-visual content." },
+    { "rule": "Consistent tile detail display", "severity": "error", "detail": "All media tiles in a gallery must either all show details (sublabel, actions) or none show them. Do not mix." },
+    { "rule": "Section headlines must reflect grouping", "severity": "warning", "detail": "If sections are used, the headline of each section must reflect the grouping criterion (e.g. the date, the media type). Do not use generic or unrelated headlines." },
+    { "rule": "Provide meaningful default sort order", "severity": "warning", "detail": "Always provide a useful default grouping and sort order, e.g. most recent first on a patient detail page." },
+    { "rule": "Selection mode is global", "severity": "info", "detail": "Selection mode activates for all tiles when any tile checkbox is ticked. It is not per-tile." }
+  ],
+  "agent_instructions": {
+    "confidence_blockers": [
+      "If ticket mixes tiles with and without details in the same gallery, flag.",
+      "If ticket uses gallery for non-image content, flag and suggest List instead.",
+      "If ticket adds section headlines that do not reflect a grouping criterion, flag."
+    ],
+    "related_components": ["Media tile", "Universal action bar", "Skeleton"]
+  },
+  "embedding_text": "Media gallery component. Grid of media tiles for graphical objects patient images. Responsive column layout fixed gutter. Optional section headlines for grouping by date or type. Selection mode activates on checkbox tick changes click to select. All tiles consistent detail display. Skeleton loading state."
+}
