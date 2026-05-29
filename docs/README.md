@@ -1,7 +1,7 @@
 # UX AI Toolkit
 
 AI-powered tools for UX designers working on medical/dental software.
-Built on Claude. Runs on your laptop. No coding required for most of it.
+Built on Claude. Runs on your laptop.
 
 ---
 
@@ -18,13 +18,13 @@ Two tools that sit alongside your existing Figma workflow — one for thinking, 
   <a class="card" href="#/tools/ux-review-agent">
     <span class="card-icon">🔍</span>
     <p class="card-title">UX Review Agent</p>
-    <p class="card-desc">Full audit of staging screens against the design system. Writes a structured report with every issue graded by severity.</p>
+    <p class="card-desc">Full audit of your screens against the design system. Produces a structured report with every issue graded by severity.</p>
   </a>
 </div>
 
 ---
 
-## Where each tool fits
+## Where each tool fits in your workflow
 
 ```
 NEED arrives
@@ -44,7 +44,7 @@ Screens on staging
 Handoff
 ```
 
-The Figma part doesn't change. The tools add checkpoints before and after it.
+Your Figma work doesn't change. The tools add checkpoints before and after it.
 
 ---
 
@@ -53,9 +53,9 @@ The Figma part doesn't change. The tools add checkpoints before and after it.
 | | |
 |---|---|
 | **Tools** | 1 agent, 1 skill |
-| **Design system** | 59 components, 23 with full structured coverage |
-| **Foundations** | Color, spacing, typography, border, radius, elevation |
-| **Rules** | 50+ named do/don't rules with error/warning severity |
+| **Design system** | 59 components documented |
+| **Foundations** | Colour, spacing, typography, border, radius, elevation |
+| **Rules** | 50+ named do/don't rules |
 | **Patterns** | Forms, navigation, loading, notifications, and more |
 | **Templates** | 8 standard page templates |
 
@@ -63,6 +63,6 @@ The Figma part doesn't change. The tools add checkpoints before and after it.
 
 ## New here?
 
-Start with the [Designer Workflow Guide](workflow-guide.md) — plain language, no technical knowledge required.
+Start with the [Designer Workflow Guide](workflow-guide.md).
 
-If you're setting up for the first time, go to [Getting Started](getting-started.md).
+Setting up for the first time? Go to [Getting Started](getting-started.md).

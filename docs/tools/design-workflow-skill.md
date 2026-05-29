@@ -1,6 +1,6 @@
 # Design Workflow Skill
 
-Turns your NEED inputs into a design brief. Checks your screens before a sync. Runs in Claude chat — no terminal needed.
+Turns your NEED inputs into a design brief. Checks your screens before a sync. Runs in Claude chat — no setup needed.
 
 ---
 
@@ -8,17 +8,17 @@ Turns your NEED inputs into a design brief. Checks your screens before a sync. R
 
 - Right after a kick-off, before opening Figma
 - Before a weekly sync, to catch blockers early
-- When you want to know which components to use for a NEED
+- When you're unsure which components to use for a NEED
 
-> **Not sure which tool to use?** If screens are already on staging and you need a full audit, use the [UX Review Agent](tools/ux-review-agent.md) instead.
+> **Not sure which tool to use?** If your screens are already on staging and you need a full audit, use the [UX Review Agent](tools/ux-review-agent.md) instead.
 
 ---
 
 ## Mode 1 — Brief synthesis
 
-Turns scattered NEED inputs into a structured design brief.
+Takes your scattered NEED inputs and turns them into a structured design brief.
 
-### Input format
+### What to paste in
 
 ```
 NEED: [one paragraph — what problem are we solving?]
@@ -29,7 +29,7 @@ Known gaps: [list what you don't know yet]
 
 If a field is empty, write `none`.
 
-### Output
+### What you get back
 
 ```
 ## Design brief — [NEED title]
@@ -43,7 +43,7 @@ If a field is empty, write `none`.
 ### What we don't know
 - [Gap] — [why it matters]
 
-### DS components to use
+### Components to use
 - [Component] — [variant] — [why this one]
 
 ### High-priority risks
@@ -53,23 +53,23 @@ If a field is empty, write `none`.
 1. [Question]
 ```
 
-The brief is ready when a designer could choose components and start a frame from it. If key information is still missing, the skill says so explicitly and stops.
+The brief is ready when you could open Figma and start a frame from it. If something key is missing, the skill says so and stops — it won't produce a brief that isn't usable.
 
 ---
 
 ## Mode 2 — Pre-sync review
 
-Checks your screens against the brief and design system rules. Flags only blockers — nothing else.
+Checks your screens against the brief and design system rules before a weekly sync. Flags only blockers.
 
-### Input format
+### What to paste in
 
 ```
-Brief: [paste the brief, or describe the goal]
+Brief: [paste the brief, or describe the goal in a sentence]
 Screens: [list each screen — components used, key interactions]
-Decisions made: [any deliberate exceptions or trade-offs]
+Decisions made: [any deliberate exceptions or trade-offs you made]
 ```
 
-### Output
+### What you get back
 
 ```
 ## Review — [NEED title] — [date]
@@ -84,36 +84,25 @@ Decisions made: [any deliberate exceptions or trade-offs]
 - [Confirmed pattern]
 ```
 
-If there are no blockers, the skill says: "No blockers found."
+If there are no blockers: "No blockers found."
 
 ---
 
-## What it flags
+## What the skill flags — and what it doesn't
 
-The skill only flags three things. Not more.
+The skill flags three things only. Not four. Not "just one more thing."
 
-**1. Gap components**
-Only one truly matters: **Form** — it has no Storybook reference and is high-frequency in tickets. Other gap components (AI button, AI side panel, Battery indicator, Universal action bar) are flagged only if you explicitly mention them.
+**1. Components with incomplete design system coverage**
+One in particular matters: **Form** — it's the most common component in tickets and the one with the least complete documentation. The skill flags it if you're using it, so you know to double-check manually.
 
-**2. ERROR-severity rule violations**
-From the design system's do/don't rules, only `severity=error`. Most common:
-- Disabled primary button on incomplete form
-- More than one primary button per context
-- Hex values instead of semantic tokens
-- Closing actions that aren't tertiary icon buttons
+**2. Must-fix rule violations**
+The design system has rules with two levels: must-fix and should-fix. The skill only surfaces must-fix. The most common ones:
+- Disabled primary button on an incomplete form (should be active instead)
+- More than one primary button in the same context
+- Using raw colour values instead of design tokens
+- Closing actions that use the wrong button type
 
-**3. Missing component coverage**
-When your design needs something the DS doesn't have. The skill suggests the closest existing component and flags it for DS governance.
+**3. Components your design needs but the system doesn't have**
+If you're designing something that doesn't map to any existing component, the skill flags it and suggests the closest alternative. This gets it on the radar for the design system team.
 
-Everything else — warnings, minor nuances, polish — is ignored unless you ask.
-
----
-
-## Knowledge the skill uses
-
-| File | What it contains |
-|---|---|
-| `guidelines/component-status.json` | Component readiness and gap flags |
-| `guidelines/do-dont-rules.json` | ERROR-severity violations |
-| `guidelines/token-usage-rules.json` | Token constraints |
-| `components/*.json` | Component variants and props |
+Everything else — should-fix warnings, minor nuances, polish — is ignored unless you ask for it.

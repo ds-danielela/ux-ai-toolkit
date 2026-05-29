@@ -4,6 +4,7 @@
 
 - [Home](/)
 - [Getting started](getting-started.md)
+- [Key concepts](concepts.md)
 
 **Workflow**
 
