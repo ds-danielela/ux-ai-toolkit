@@ -148,6 +148,11 @@ Things worth tracking but not scheduled.
 - Figma plugin — trigger a review directly from Figma without touching the terminal
 - CI integration — run `agents/ux-review` as part of a staging deploy pipeline
 - Multi-language support — extend agent output to support languages other than English
+- Guided wizard / routing skill — `skills/toolkit-guide` — a yes/no decision tree that
+  asks the designer where they are in their workflow and routes them to the right tool.
+  Decision tree: kick-off done? → screens on staging? → brief ready? → picks the correct
+  agent or skill mode. Can be a chat skill (in-conversation routing) and/or a static
+  interactive page in the docs site.
 
 ---
 
